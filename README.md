@@ -1,4 +1,4 @@
-# My Corner of the Internet (iamarjav.me)
+# My Corner of the Internet ([iamarjav.me](https://iamarjav.me))
 
 This is my personal portfolio - a small piece of the web I built to show who I am, what I have worked on and what I care about.
 

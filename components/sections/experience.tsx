@@ -6,28 +6,30 @@ import { useParallax } from "@/hooks/use-parallax"
 
 function ExperienceItem({ entry }: { entry: typeof workExperience[0] }) {
   return (
-    <li className="mb-12">
+    <li className="mb-10 last:mb-0">
       <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
         {/* Hover background */}
-        <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-card/70 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" />
+        <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-xl transition-all duration-300 motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-card/80 lg:group-hover:shadow-sm lg:group-hover:border lg:group-hover:border-border/60" />
 
         {/* Date */}
         <header
-          className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:col-span-2"
+          className="z-10 mb-2 mt-1 sm:col-span-2"
           aria-label={entry.date}
         >
-          {entry.date}
+          <span className="inline-block text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/80 bg-muted/60 rounded-md px-2 py-1 border border-border/50">
+            {entry.date}
+          </span>
         </header>
 
         {/* Content */}
         <div className="z-10 sm:col-span-6">
           <h3 className="font-medium leading-snug text-foreground">
-            <span className="inline-flex items-baseline text-base font-medium leading-tight text-foreground group-hover:text-primary">
+            <span className="inline-flex items-baseline text-base font-semibold leading-tight text-foreground group-hover:text-primary transition-colors">
               {entry.role}
-              <span className="mx-1.5 text-muted-foreground/60">
+              <span className="mx-1.5 text-muted-foreground/40 font-light">
                 {"·"}
               </span>
-              <span className="text-muted-foreground group-hover:text-primary/80">
+              <span className="text-muted-foreground group-hover:text-primary/70 transition-colors">
                 {entry.company}
               </span>
             </span>
@@ -35,13 +37,13 @@ function ExperienceItem({ entry }: { entry: typeof workExperience[0] }) {
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
             {entry.description}
           </p>
-          <ul className="mt-3 flex flex-col gap-1" aria-label="Highlights">
+          <ul className="mt-3 flex flex-col gap-1.5" aria-label="Highlights">
             {entry.highlights.map((h) => (
               <li
                 key={h}
-                className="flex items-start gap-2 text-sm text-muted-foreground"
+                className="flex items-start gap-2.5 text-sm text-muted-foreground"
               >
-                <span className="mt-2 size-1 shrink-0 rounded-full bg-primary/50" />
+                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary/50" aria-hidden="true" />
                 {h}
               </li>
             ))}
@@ -65,21 +67,31 @@ export function ExperienceSection() {
       className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
       aria-label="Work experience"
     >
-      <div className="sticky top-0 z-20 -mx-6 mb-4 bg-background/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-0 lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground lg:sr-only">
+      {/* Mobile sticky header */}
+      <div className="sticky top-0 z-20 -mx-6 mb-4 bg-background/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:px-12 lg:hidden">
+        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground">
           Experience
         </h2>
       </div>
 
-      <div className="space-y-12">
+      {/* Desktop section heading */}
+      <div className="hidden lg:flex items-center gap-4 mb-10" aria-hidden="true">
+        <span className="text-xs font-bold uppercase tracking-widest text-foreground/70 shrink-0">
+          Experience
+        </span>
+        <div className="flex-1 h-px bg-border" />
+      </div>
+
+      <div className="space-y-14">
         {/* Work Experience */}
         <div
           ref={workRef}
           className="will-change-transform"
           style={{ transform: `translateY(${workOffset}px)` }}
         >
-          <h3 className="mb-6 text-sm font-semibold uppercase tracking-wider text-foreground">
+          <h3 className="mb-6 text-xs font-bold uppercase tracking-wider text-muted-foreground/80 flex items-center gap-3">
             Work Experience
+            <span className="flex-1 h-px bg-border/60" aria-hidden="true" />
           </h3>
           <ol className="group/list">
             {workExperience.map((entry) => (
@@ -94,8 +106,9 @@ export function ExperienceSection() {
           className="will-change-transform"
           style={{ transform: `translateY(${volOffset}px)` }}
         >
-          <h3 className="mb-6 text-sm font-semibold uppercase tracking-wider text-foreground">
+          <h3 className="mb-6 text-xs font-bold uppercase tracking-wider text-muted-foreground/80 flex items-center gap-3">
             Voluntary & Side Projects
+            <span className="flex-1 h-px bg-border/60" aria-hidden="true" />
           </h3>
           <ol className="group/list">
             {voluntaryExperience.map((entry) => (

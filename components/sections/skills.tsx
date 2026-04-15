@@ -23,33 +23,47 @@ export function SkillsSection() {
       className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
       aria-label="Technical skills"
     >
-      <div className="sticky top-0 z-20 -mx-6 mb-4 bg-background/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-0 lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground lg:sr-only">
+      {/* Mobile sticky header */}
+      <div className="sticky top-0 z-20 -mx-6 mb-4 bg-background/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:px-12 lg:hidden">
+        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground">
           Skills
         </h2>
       </div>
 
+      {/* Desktop section heading */}
+      <div className="hidden lg:flex items-center gap-4 mb-10" aria-hidden="true">
+        <span className="text-xs font-bold uppercase tracking-widest text-foreground/70 shrink-0">
+          Skills
+        </span>
+        <div className="flex-1 h-px bg-border" />
+      </div>
+
       <div
         ref={gridRef}
-        className="grid gap-12 sm:grid-cols-2 will-change-transform"
+        className="grid gap-4 sm:grid-cols-2 will-change-transform"
         style={{ transform: `translateY(${gridOffset}px)` }}
       >
         {Object.entries(skills).map(([key, category]) => {
           const Icon = iconMap[key] || Code2
           return (
-            <div key={key} className="border-l-2 border-border pl-4">
-              <div className="mb-4 flex items-start gap-3">
-                <Icon className="size-5 text-primary mt-0.5 flex-shrink-0" />
-                <h3 className="text-sm font-semibold tracking-wide text-foreground">
+            <div
+              key={key}
+              className="rounded-xl border border-border bg-card/40 p-5 transition-all duration-300 card-hover hover:border-primary/20 hover:bg-card"
+            >
+              <div className="mb-4 flex items-center gap-2.5">
+                <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10">
+                  <Icon className="size-4 text-primary" />
+                </div>
+                <h3 className="text-sm font-semibold text-foreground">
                   {category.label}
                 </h3>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {category.items.map((skill) => (
                   <Badge
                     key={skill}
                     variant="secondary"
-                    className="rounded px-2.5 py-1 text-xs font-medium bg-muted text-muted-foreground hover:bg-muted-foreground/10 transition-colors"
+                    className="rounded-full px-2.5 py-0.5 text-[11px] font-medium bg-muted/80 text-muted-foreground border-border/60 hover:bg-muted transition-colors"
                   >
                     {skill}
                   </Badge>

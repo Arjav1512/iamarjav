@@ -25,10 +25,19 @@ export function ContactSection() {
       className="mb-8 scroll-mt-16 md:mb-12 lg:mb-16 lg:scroll-mt-24"
       aria-label="Get in touch"
     >
-      <div className="sticky top-0 z-20 -mx-6 mb-4 bg-background/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-0 lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground lg:sr-only">
+      {/* Mobile sticky header */}
+      <div className="sticky top-0 z-20 -mx-6 mb-4 bg-background/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:px-12 lg:hidden">
+        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground">
           Contact
         </h2>
+      </div>
+
+      {/* Desktop section heading */}
+      <div className="hidden lg:flex items-center gap-4 mb-10" aria-hidden="true">
+        <span className="text-xs font-bold uppercase tracking-widest text-foreground/70 shrink-0">
+          Contact
+        </span>
+        <div className="flex-1 h-px bg-border" />
       </div>
 
       {/* Intro block */}
@@ -58,7 +67,7 @@ export function ContactSection() {
         style={{ transform: `translateY(${cardsOffset}px)` }}
       >
         {/* Email card -- primary action */}
-        <div className="group relative mb-4 rounded-xl border border-border bg-card/50 p-5 transition-all duration-300 hover:border-primary/30 hover:bg-card">
+        <div className="group relative mb-4 rounded-xl border border-border bg-card/40 p-5 transition-all duration-300 card-hover hover:border-primary/25 hover:bg-card">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
               <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
@@ -100,7 +109,7 @@ export function ContactSection() {
 
         {/* Location indicator */}
         <div className="flex items-center gap-2 px-1">
-          <MapPin className="size-3.5 text-muted-foreground/60" />
+          <MapPin className="size-3.5 text-muted-foreground/50" />
           <span className="text-xs text-muted-foreground/60">{siteConfig.location}</span>
         </div>
       </div>

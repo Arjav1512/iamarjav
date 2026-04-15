@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Github, Linkedin } from "lucide-react"
-import { siteConfig } from "@/data/content"
+import { Github, Linkedin, ArrowUpRight } from "lucide-react"
+import { siteConfig, techStack } from "@/data/content"
 import { EmailPopup } from "@/components/email-popup"
 
 function XIcon({ className }: { className?: string }) {
@@ -62,17 +62,29 @@ export function LeftColumn() {
               {siteConfig.name}
             </a>
           </h1>
-          <h2 className="text-lg font-semibold text-muted-foreground mb-4">
+          <h2 className="text-lg font-semibold text-muted-foreground mb-3">
             {siteConfig.role}
           </h2>
-          <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+          <p className="max-w-sm text-[0.9375rem] leading-relaxed text-muted-foreground">
             {siteConfig.tagline}
           </p>
+
+          {/* Tech stack pills */}
+          <div className="mt-5 flex flex-wrap gap-1.5" aria-label="Core technologies">
+            {techStack.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-border/80 bg-muted/60 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Navigation - desktop only */}
-        <nav className="mt-16 hidden lg:block" aria-label="In-page navigation">
-          <ul className="flex flex-col gap-1">
+        <nav className="mt-14 hidden lg:block" aria-label="In-page navigation">
+          <ul className="flex flex-col gap-0.5">
             {navLinks.map((link) => {
               const id = link.href.replace("#", "")
               const isActive = activeSection === id
@@ -80,26 +92,34 @@ export function LeftColumn() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className={`group flex items-center gap-4 py-3 transition-all ${
-                      isActive ? "text-foreground" : "text-muted-foreground"
+                    className={`group flex items-center gap-4 py-2.5 px-2 -mx-2 rounded-lg transition-all duration-200 ${
+                      isActive
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     <span
-                      className={`inline-block h-px transition-all ${
+                      className={`inline-block h-px flex-shrink-0 transition-all duration-200 ${
                         isActive
-                          ? "w-16 bg-foreground"
-                          : "w-8 bg-muted-foreground/40 group-hover:w-16 group-hover:bg-foreground"
+                          ? "w-10 bg-primary"
+                          : "w-6 bg-muted-foreground/30 group-hover:w-10 group-hover:bg-foreground/50"
                       }`}
                     />
                     <span
-                      className={`text-xs font-bold uppercase tracking-widest transition-colors ${
+                      className={`text-xs font-semibold uppercase tracking-widest transition-colors ${
                         isActive
                           ? "text-foreground"
-                          : "text-muted-foreground group-hover:text-foreground"
+                          : "text-muted-foreground/70 group-hover:text-foreground"
                       }`}
                     >
                       {link.label}
                     </span>
+                    {isActive && (
+                      <span
+                        className="ml-auto size-1.5 flex-shrink-0 rounded-full bg-primary"
+                        aria-hidden="true"
+                      />
+                    )}
                   </a>
                 </li>
               )
@@ -108,36 +128,51 @@ export function LeftColumn() {
         </nav>
       </div>
 
-      {/* Social links + theme toggle */}
-      <div className="mt-8 flex items-center gap-4 lg:mt-0">
-        <a
-          href={siteConfig.social.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-          aria-label="GitHub"
-        >
-          <Github className="size-5" />
-        </a>
-        <a
-          href={siteConfig.social.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-          aria-label="LinkedIn"
-        >
-          <Linkedin className="size-5" />
-        </a>
-        <a
-          href={siteConfig.social.twitter}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-          aria-label="X (Twitter)"
-        >
-          <XIcon className="size-5" />
-        </a>
-        <EmailPopup email={siteConfig.email} />
+      {/* Bottom: resume CTA + social links */}
+      <div className="mt-8 lg:mt-0 space-y-4">
+        {/* Resume CTA */}
+        <div>
+          <a
+            href={siteConfig.resumeUrl}
+            className="group inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-all hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
+            aria-label="View résumé"
+          >
+            View Résumé
+            <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </div>
+
+        {/* Social links */}
+        <div className="flex items-center gap-4">
+          <a
+            href={siteConfig.social.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            aria-label="GitHub"
+          >
+            <Github className="size-5" />
+          </a>
+          <a
+            href={siteConfig.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="size-5" />
+          </a>
+          <a
+            href={siteConfig.social.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            aria-label="X (Twitter)"
+          >
+            <XIcon className="size-5" />
+          </a>
+          <EmailPopup email={siteConfig.email} />
+        </div>
       </div>
     </header>
   )

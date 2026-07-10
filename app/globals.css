@@ -61,9 +61,18 @@
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+/*
+ * next/font injects --font-space-grotesk on <body>, so the display chain
+ * must be declared there (a var() inside a :root custom property would
+ * resolve at :root, where the font variable is not visible).
+ */
+body {
+  --font-display-chain: var(--font-space-grotesk), 'Space Grotesk', system-ui, sans-serif;
+}
+
 @theme inline {
   /* Three typographic voices: display (declaration), sans (information), mono (data) */
-  --font-display: var(--font-space-grotesk), 'Space Grotesk', system-ui, sans-serif;
+  --font-display: var(--font-display-chain);
   --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), 'JetBrains Mono', monospace;
 
@@ -129,7 +138,7 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-display);
+    font-family: var(--font-display-chain);
     letter-spacing: -0.02em;
     text-wrap: balance;
   }

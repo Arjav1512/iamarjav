@@ -14,6 +14,17 @@ export const siteConfig = {
   resumeUrl: "#",
 }
 
+export const hero = {
+  greeting: "hey — i'm arjav jain",
+  headlineLines: ["I build things,", "break things,", "and ship a lot."],
+  status: [
+    "now building Torch — design-to-docs automation",
+    "intern @ ElevenX",
+    "CS/AI @ Bennett '29",
+  ],
+  availability: "open to internships & founding-team roles",
+}
+
 export const techStack = [
   "Python",
   "Java",

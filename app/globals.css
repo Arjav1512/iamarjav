@@ -194,6 +194,25 @@ body {
   background-size: 100% 1px;
 }
 
+/* Live status dot — one of the accent's four permitted appearances */
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  animation: pulse-dot 3s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
 /* Dynamic Island (email popup) — the one allowed flourish */
 @keyframes island-expand {
   from {
@@ -239,6 +258,9 @@ body {
   .animate-rise-in,
   .animate-island-expand {
     animation-duration: 1ms;
+  }
+  .status-dot {
+    animation: none;
   }
   .link-underline {
     transition: none;

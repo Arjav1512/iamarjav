@@ -11,3 +11,6 @@ node_modules/
 
 # Claude Code session data
 .claude/
+# Generated build artifacts
+next-env.d.ts
+tsconfig.tsbuildinfo

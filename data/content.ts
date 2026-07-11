@@ -49,12 +49,34 @@ export const coreStrengths = [
   "Open Source",
 ]
 
-export const projects = [
+export type Project = {
+  title: string
+  /** One-line thesis shown under the title. */
+  tagline: string
+  /** What it is / what makes the build interesting. */
+  description: string
+  /** Why it exists — the problem that made it worth building (featured only). */
+  problem?: string
+  /** Short verifiable fact shown next to the status, e.g. "live in production". */
+  context?: string
+  tech: string[]
+  github: string
+  demo: string
+  featured?: boolean
+  inProgress?: boolean
+  /** Real screenshot/GIF for the browser frame; the typographic cover renders until this exists. */
+  media?: { src: string; alt: string }
+}
+
+export const projects: Project[] = [
   {
     title: "Mirror",
     tagline: "An AI journal that catches your cognitive biases before you do.",
+    problem:
+      "Journaling apps are good at storing thoughts and bad at revealing patterns. Your own cognitive biases are, by definition, the ones you can't see — so writing alone rarely turns into self-awareness.",
     description:
-      "An AI-powered self-reflection journal that detects cognitive biases, tracks emotional patterns over time, and helps users build genuine self-awareness through daily writing.",
+      "An AI-powered self-reflection journal that detects cognitive biases in what you write, tracks emotional patterns over time, and turns daily entries into genuine self-awareness.",
+    context: "live in production",
     tech: ["React", "Supabase", "Tailwind CSS", "Sentiment Analysis", "Edge Functions"],
     github: "https://github.com/Arjav1512/Mirror",
     demo: "https://usemirror.dev",
@@ -63,8 +85,11 @@ export const projects = [
   {
     title: "ChessMate",
     tagline: "Chess improvement with an engine that explains, not just evaluates.",
+    problem:
+      "Chess engines tell you the best move, not why yours was worse. Evaluation without explanation makes you dependent on the engine instead of better at the game.",
     description:
-      "A web-based chess improvement platform that helps you analyse games, understand mistakes, and train smarter using Stockfish engine evaluation paired with an AI mentor chat interface.",
+      "A web-based improvement platform that pairs Stockfish evaluation with an AI mentor chat — analyse your games, understand your mistakes, and train the weaknesses it finds.",
+    context: "open source",
     tech: ["React", "TypeScript", "Supabase", "Stockfish", "Tailwind CSS"],
     github: "https://github.com/Arjav1512/ChessMate-Tool",
     demo: "#",
@@ -73,8 +98,11 @@ export const projects = [
   {
     title: "Daily Digital Diary",
     tagline: "A Chrome extension that turns your browsing history into mindful insight.",
+    problem:
+      "Browsing history is a log, not a mirror — it records where your attention went without ever making you notice. Most screen-time tools also ship that data to someone else's server.",
     description:
-      "A Chrome extension that tracks your browsing habits locally, categorises sites, and uses Gemini AI to summarise what you consumed -- nudging you toward more mindful digital behaviour.",
+      "A Chrome extension that tracks browsing locally, categorises the sites you visit, and uses Gemini to summarise what you actually consumed — a daily nudge toward more mindful behaviour.",
+    context: "CS50 final project",
     tech: ["JavaScript", "Chrome APIs", "Gemini API", "HTML/CSS"],
     github: "https://github.com/Arjav1512/CS50-FinalProject",
     demo: "https://youtu.be/ZR7ZmUQUYdw",
@@ -98,6 +126,7 @@ export const projects = [
     tech: ["Web Development", "API Integration", "Hackathon"],
     github: "#",
     demo: "#",
+    context: "Smart India Hackathon",
   },
   {
     title: "Stackit",

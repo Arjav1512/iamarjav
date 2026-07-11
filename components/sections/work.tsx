@@ -1,11 +1,9 @@
 import { Github, ArrowUpRight } from "lucide-react"
-import { projects } from "@/data/content"
+import { projects, type Project } from "@/data/content"
 import { Section } from "@/components/primitives/section"
 import { Reveal } from "@/components/primitives/reveal"
 import { Tag } from "@/components/primitives/tag"
 import { cn } from "@/lib/utils"
-
-type Project = (typeof projects)[number]
 
 const hasUrl = (url?: string) => !!url && url !== "#"
 const primaryUrl = (p: Project) =>
@@ -15,10 +13,13 @@ const primaryUrl = (p: Project) =>
 const displayUrl = (url: string) =>
   url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")
 
+const statusLabel = (p: Project) => (p.inProgress ? "in progress" : "shipped")
+
 /*
- * Browser-chrome frame. Until real screenshots exist the body is a designed
- * typographic cover — the project wordmark on a quiet surface — never a
- * gray placeholder. Drop an image in later and only this component changes.
+ * Browser-chrome frame. Renders `project.media` when it exists; until then
+ * the body is a designed typographic cover — the wordmark on a quiet
+ * surface, never a gray placeholder. Swapping in a real screenshot/GIF is
+ * a content change only; the layout is identical in both states.
  */
 function BrowserFrame({ project }: { project: Project }) {
   const url = primaryUrl(project)
@@ -36,14 +37,23 @@ function BrowserFrame({ project }: { project: Project }) {
         </span>
         <span className="w-[42px]" aria-hidden="true" />
       </div>
-      <div className="flex aspect-[16/9] items-center justify-center bg-secondary/40 sm:aspect-[2/1]">
-        <span
-          className="font-display text-3xl font-bold tracking-tight text-foreground/75 transition-colors duration-(--duration-hover) group-hover:text-foreground sm:text-5xl"
-          aria-hidden="true"
-        >
-          {project.title}
-        </span>
-      </div>
+      {project.media ? (
+        <img
+          src={project.media.src}
+          alt={project.media.alt}
+          loading="lazy"
+          className="aspect-[16/9] w-full bg-secondary/40 object-cover object-top sm:aspect-[2/1]"
+        />
+      ) : (
+        <div className="flex aspect-[16/9] items-center justify-center bg-secondary/40 sm:aspect-[2/1]">
+          <span
+            className="font-display text-3xl font-bold tracking-tight text-foreground/75 transition-colors duration-(--duration-hover) group-hover:text-foreground sm:text-5xl"
+            aria-hidden="true"
+          >
+            {project.title}
+          </span>
+        </div>
+      )}
     </div>
   )
 }
@@ -85,9 +95,10 @@ function ProjectLinks({ project, className }: { project: Project; className?: st
 }
 
 /*
- * Featured entry: media frame, then title/thesis/description/meta. The
- * title is a stretched link over the whole entry (a real anchor, not a
- * click handler); inner links sit above it on their own layer.
+ * Featured entry — a small product launch page: media frame, title,
+ * thesis, then the story ("why it exists" / "what it is"), meta, CTAs.
+ * The title is a stretched link over the whole entry (a real anchor);
+ * inner links sit above it on their own layer.
  */
 function FeaturedProject({ project, index }: { project: Project; index: number }) {
   const url = primaryUrl(project)
@@ -97,7 +108,7 @@ function FeaturedProject({ project, index }: { project: Project; index: number }
       <article className="group relative">
         <BrowserFrame project={project} />
 
-        <div className="mt-6 sm:mt-7">
+        <div className="mt-6 sm:mt-8">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
             <h3 className="font-display text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
               {url ? (
@@ -118,24 +129,43 @@ function FeaturedProject({ project, index }: { project: Project; index: number }
               )}
             </h3>
             <span className="font-mono text-xs text-muted-foreground">
-              {"inProgress" in project && project.inProgress ? "in progress" : "shipped"}
+              {statusLabel(project)}
+              {project.context && ` · ${project.context}`}
             </span>
           </div>
 
-          <p className="mt-2 max-w-prose text-base font-medium leading-relaxed text-foreground">
+          <p className="mt-3 max-w-prose text-base font-medium leading-relaxed text-foreground sm:text-lg">
             {project.tagline}
           </p>
-          <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
-            {project.description}
-          </p>
 
-          <div className="mt-4 flex flex-wrap gap-1.5">
+          <div className="mt-5 grid gap-5 sm:grid-cols-2 sm:gap-10">
+            {project.problem && (
+              <div>
+                <h4 className="mb-2 font-mono text-[11px] text-muted-foreground">
+                  why it exists
+                </h4>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {project.problem}
+                </p>
+              </div>
+            )}
+            <div>
+              <h4 className="mb-2 font-mono text-[11px] text-muted-foreground">
+                what it is
+              </h4>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {project.description}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-1.5">
             {project.tech.map((t) => (
               <Tag key={t}>{t}</Tag>
             ))}
           </div>
 
-          <ProjectLinks project={project} className="mt-5" />
+          <ProjectLinks project={project} className="mt-6" />
         </div>
       </article>
     </Reveal>
@@ -171,7 +201,8 @@ function ProjectRow({ project }: { project: Project }) {
           )}
         </h3>
         <span className="font-mono text-xs text-muted-foreground">
-          {"inProgress" in project && project.inProgress ? "in progress" : "shipped"}
+          {statusLabel(project)}
+          {project.context && ` · ${project.context}`}
         </span>
       </div>
       <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-muted-foreground">
@@ -187,19 +218,19 @@ function ProjectRow({ project }: { project: Project }) {
 }
 
 export function WorkSection() {
-  const featured = projects.filter((p) => "featured" in p && p.featured)
-  const secondary = projects.filter((p) => !("featured" in p && p.featured))
+  const featured = projects.filter((p) => p.featured)
+  const secondary = projects.filter((p) => !p.featured)
 
   return (
     <Section id="projects" index={3} title="Selected Work">
-      <div className="flex flex-col gap-20 lg:gap-28">
+      <div className="flex flex-col gap-24 lg:gap-32">
         {featured.map((project, i) => (
           <FeaturedProject key={project.title} project={project} index={i} />
         ))}
       </div>
 
       {secondary.length > 0 && (
-        <Reveal className="mt-20 lg:mt-24">
+        <Reveal className="mt-24 lg:mt-28">
           <h3 className="mb-6 font-mono text-xs text-muted-foreground">more work</h3>
           <ul>
             {secondary.map((project) => (

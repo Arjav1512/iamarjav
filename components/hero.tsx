@@ -84,7 +84,7 @@ export function Hero() {
 
       <a
         href="#about"
-        className="animate-rise-in group absolute bottom-8 left-1/2 -translate-x-1/2 p-3 font-mono text-[11px] text-muted-foreground/70 transition-colors duration-(--duration-hover) hover:text-foreground"
+        className="animate-rise-in group absolute bottom-8 left-1/2 hidden -translate-x-1/2 p-3 font-mono text-[11px] text-muted-foreground/70 transition-colors duration-(--duration-hover) hover:text-foreground md:block"
         style={{ "--rise-delay": "700ms" } as React.CSSProperties}
       >
         scroll

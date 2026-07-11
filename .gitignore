@@ -8,3 +8,9 @@ node_modules/
 .next/
 .env*.local
 .DS_Store
+
+# Claude Code session data
+.claude/
+# Generated build artifacts
+next-env.d.ts
+tsconfig.tsbuildinfo

@@ -1,45 +1,81 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/*
+ * Design foundation — "the portfolio is the proof"
+ *
+ * Palette: warm paper, near-black ink, one rationed ultraviolet accent.
+ * The accent may only appear on: active-nav marker, link hover states,
+ * the status dot, and text selection. Never as a fill or background.
+ */
 :root {
-  --background: oklch(0.995 0.001 0);
-  --foreground: oklch(0.12 0.02 280);
-  --card: oklch(0.97 0.002 280);
-  --card-foreground: oklch(0.12 0.02 280);
-  --popover: oklch(0.97 0.002 280);
-  --popover-foreground: oklch(0.12 0.02 280);
-  --primary: oklch(0.55 0.18 280);
-  --primary-foreground: oklch(0.995 0.001 0);
-  --secondary: oklch(0.92 0.005 280);
-  --secondary-foreground: oklch(0.25 0.018 280);
-  --muted: oklch(0.92 0.005 280);
-  --muted-foreground: oklch(0.48 0.012 280);
-  --accent: oklch(0.55 0.18 280);
-  --accent-foreground: oklch(0.995 0.001 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.88 0.008 280);
-  --input: oklch(0.88 0.008 280);
-  --ring: oklch(0.55 0.18 280);
-  --chart-1: oklch(0.55 0.18 280);
+  /* Surfaces */
+  --background: oklch(0.98 0.004 85); /* warm paper */
+  --foreground: oklch(0.16 0.01 270); /* ink */
+  --card: oklch(0.955 0.004 85);
+  --card-foreground: oklch(0.16 0.01 270);
+  --popover: oklch(0.965 0.004 85);
+  --popover-foreground: oklch(0.16 0.01 270);
+
+  /* Ink hierarchy */
+  --primary: oklch(0.16 0.01 270); /* primary actions are ink, not accent */
+  --primary-foreground: oklch(0.98 0.004 85);
+  --secondary: oklch(0.93 0.005 85);
+  --secondary-foreground: oklch(0.25 0.01 270);
+  --muted: oklch(0.93 0.005 85);
+  --muted-foreground: oklch(0.45 0.01 270); /* AA on paper at 12px+ */
+
+  /* The one accent: electric ultraviolet */
+  --accent: oklch(0.52 0.21 285);
+  --accent-foreground: oklch(0.98 0.004 85);
+
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0.004 85);
+
+  --border: oklch(0.88 0.005 85); /* hairline */
+  --input: oklch(0.88 0.005 85);
+  --ring: oklch(0.52 0.21 285);
+
+  --chart-1: oklch(0.52 0.21 285);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.97 0.002 280);
-  --sidebar-foreground: oklch(0.12 0.02 280);
-  --sidebar-primary: oklch(0.55 0.18 280);
-  --sidebar-primary-foreground: oklch(0.995 0.001 0);
-  --sidebar-accent: oklch(0.92 0.005 280);
-  --sidebar-accent-foreground: oklch(0.25 0.018 280);
-  --sidebar-border: oklch(0.88 0.008 280);
-  --sidebar-ring: oklch(0.55 0.18 280);
+
+  --radius: 0.75rem;
+
+  --sidebar: oklch(0.955 0.004 85);
+  --sidebar-foreground: oklch(0.16 0.01 270);
+  --sidebar-primary: oklch(0.16 0.01 270);
+  --sidebar-primary-foreground: oklch(0.98 0.004 85);
+  --sidebar-accent: oklch(0.93 0.005 85);
+  --sidebar-accent-foreground: oklch(0.25 0.01 270);
+  --sidebar-border: oklch(0.88 0.005 85);
+  --sidebar-ring: oklch(0.52 0.21 285);
+
+  /* Motion tokens — calm by default, exquisite when touched */
+  --duration-state: 150ms; /* state feedback: presses, icon morphs */
+  --duration-hover: 250ms; /* hovers, underlines */
+  --duration-reveal: 400ms; /* scroll entrances */
+  --duration-hero: 600ms; /* hero entrance only */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/*
+ * next/font injects --font-space-grotesk on <body>, so the display chain
+ * must be declared there (a var() inside a :root custom property would
+ * resolve at :root, where the font variable is not visible).
+ */
+body {
+  --font-display-chain: var(--font-space-grotesk), 'Space Grotesk', system-ui, sans-serif;
 }
 
 @theme inline {
+  /* Three typographic voices: display (declaration), sans (information), mono (data) */
+  --font-display: var(--font-display-chain);
   --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), 'JetBrains Mono', monospace;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -76,6 +112,13 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Section rhythm — whitespace is pacing, not padding */
+  --spacing-section: 9rem; /* 144px desktop */
+  --spacing-section-sm: 6rem; /* 96px mobile */
+
+  /* Reading measure */
+  --container-prose: 65ch;
 }
 
 @layer base {
@@ -88,39 +131,89 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: 'ss01' on;
+  }
+  /* Declarative voice: headings set in the display face, tight and heavy */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display-chain);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
-/* Parallax smoothing */
-.will-change-transform {
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+/* ————— Motion primitives ————— */
+
+/* Scroll entrance: opacity + small rise, fires once (see useReveal) */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--duration-reveal) var(--ease-out-quart),
+    transform var(--duration-reveal) var(--ease-out-quart);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .will-change-transform {
-    transform: none !important;
+/* Hero entrance: same grammar, slower, for above-the-fold only */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise-in {
+  animation: rise-in var(--duration-hero) var(--ease-out-quart) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
+/* Animated link underline: origin left, accent colored */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--duration-hover) var(--ease-out-quart);
+}
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* Live status dot — one of the accent's four permitted appearances */
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  animation: pulse-dot 3s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
   }
 }
 
-/* Custom selection color */
-::selection {
-  background-color: oklch(0.72 0.15 165 / 0.25);
-}
-
-/* Active nav indicator */
-.nav-indicator {
-  width: 2px;
-  height: 0;
-  transition: height 0.3s ease;
-}
-.group:hover .nav-indicator,
-.nav-active .nav-indicator {
-  height: 100%;
-}
-
-/* Dynamic Island Animations */
+/* Dynamic Island (email popup) — the one allowed flourish */
 @keyframes island-expand {
   from {
     opacity: 0;
@@ -131,7 +224,6 @@
     transform: translate(-50%, 0) scale(1);
   }
 }
-
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -140,16 +232,48 @@
     opacity: 0.5;
   }
 }
-
 .animate-island-expand {
   animation: island-expand 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-
 .animate-fade-in {
   animation: fade-in 0.2s ease-out;
 }
 
-/* Custom scrollbar */
+/* Legacy parallax containers (removed in the section redesign phase) */
+.will-change-transform {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .will-change-transform {
+    transform: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-rise-in,
+  .animate-island-expand {
+    animation-duration: 1ms;
+  }
+  .status-dot {
+    animation: none;
+  }
+  .link-underline {
+    transition: none;
+  }
+}
+
+/* ————— Global chrome ————— */
+
+/* Selection: one of the accent's four permitted appearances */
+::selection {
+  background-color: oklch(0.52 0.21 285 / 0.18);
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -157,24 +281,28 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: oklch(0.80 0.008 280);
+  background: var(--border);
   border-radius: 100px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.60 0.018 280);
+  background: var(--muted-foreground);
 }
 
-/* Focus ring */
 :focus-visible {
-  outline: 2px solid oklch(0.55 0.18 280 / 0.6);
+  outline: 2px solid var(--ring);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Card hover shadow */
+/* Card interaction: flat at rest, elevation only on touch */
 .card-hover {
-  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color var(--duration-hover) ease,
+    background-color var(--duration-hover) ease,
+    box-shadow var(--duration-hover) ease;
 }
 .card-hover:hover {
-  box-shadow: 0 1px 3px oklch(0 0 0 / 0.06), 0 4px 12px oklch(0 0 0 / 0.05);
+  box-shadow:
+    0 1px 3px oklch(0 0 0 / 0.05),
+    0 4px 12px oklch(0 0 0 / 0.04);
 }

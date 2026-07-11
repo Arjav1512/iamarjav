@@ -61,7 +61,7 @@ export function EmailPopup({ email }: EmailPopupProps) {
 
       {/* Dynamic Island-style Popup */}
       {isOpen && (
-        <div className="fixed top-6 left-1/2 z-50 -translate-x-1/2 animate-island-expand">
+        <div className="fixed top-6 left-1/2 z-50 -translate-x-1/2 animate-island-expand md:top-20">
           <div className="rounded-3xl bg-foreground px-6 py-4 shadow-lg">
             <div className="flex items-center gap-3">
               <Mail className="size-4 text-background flex-shrink-0" />

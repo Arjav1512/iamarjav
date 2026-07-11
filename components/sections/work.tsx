@@ -222,7 +222,7 @@ export function WorkSection() {
   const secondary = projects.filter((p) => !p.featured)
 
   return (
-    <Section id="projects" index={3} title="Selected Work">
+    <Section id="projects" index={1} title="Selected Work">
       <div className="flex flex-col gap-24 lg:gap-32">
         {featured.map((project, i) => (
           <FeaturedProject key={project.title} project={project} index={i} />

@@ -1,8 +1,7 @@
 import { SiteNav } from "@/components/site-nav"
 import { Hero } from "@/components/hero"
-import { AboutSection } from "@/components/sections/about"
-import { ExperienceSection } from "@/components/sections/experience"
 import { WorkSection } from "@/components/sections/work"
+import { JourneySection } from "@/components/sections/journey"
 import { SkillsSection } from "@/components/sections/skills"
 import { ContactSection } from "@/components/sections/contact"
 import { Footer } from "@/components/footer"
@@ -18,11 +17,11 @@ export default function Home() {
       </a>
       <SiteNav />
       <Hero />
-      {/* Sections below keep their pre-redesign layouts until their phases */}
+      {/* Work leads (proof first), Journey follows (trust); Skills and
+          Contact keep their pre-redesign layouts until their phases */}
       <main id="main" className="mx-auto max-w-3xl px-6 pt-(--spacing-section-sm) md:px-12 lg:pt-(--spacing-section)">
-        <AboutSection />
-        <ExperienceSection />
         <WorkSection />
+        <JourneySection />
         <SkillsSection />
         <ContactSection />
         <Footer />

@@ -25,29 +25,78 @@ export const hero = {
   availability: "open to internships & founding-team roles",
 }
 
-export const techStack = [
-  "Python",
-  "Java",
-  "JavaScript",
-  "TypeScript",
-  "HTML/CSS",
-  "React",
-]
+export type JourneyChapter = {
+  /** Mono kicker above the headline, e.g. "2024 · first ventures". */
+  stage: string
+  headline: string
+  narrative: string
+  /** Verifiable facts backing the narrative — roles, orgs, dates, artifacts. */
+  facts: string[]
+  /** "What changed" — the takeaway of the chapter. */
+  outcome?: string
+}
 
-export const aboutParagraphs = [
-  "I'm a B.Tech Computer Science (AI/ML) student at Bennett University with a deep interest in AI, machine learning, and how humans interact with technology. I've built real tools -- from Chrome extensions that nudge mindful browsing to AI chess coaches that adapt to your play style.",
-  "Beyond code, I'm drawn to the intersection of technology and human psychology. I've co-founded a digital marketing agency, launched a clothing brand, and contributed to open-source projects. I believe the best products come from understanding people first, then engineering solutions.",
-  "I'm actively seeking opportunities where I can contribute to real-world products, collaborate with experienced engineers, and grow as a full stack developer -- whether it's AI tooling, web platforms, or anything in between.",
-]
-
-export const coreStrengths = [
-  "AI/ML",
-  "Product Thinking",
-  "Entrepreneurship",
-  "UX Research",
-  "Design Thinking",
-  "Open Source",
-]
+export const journey = {
+  lede: "The résumé version says CS student. The honest version is four chapters about figuring out what building actually means.",
+  chapters: [
+    {
+      stage: "2024 · first ventures",
+      headline: "Products came before code.",
+      narrative:
+        "I didn't start with a text editor — I started with customers. DigiArc was a digital marketing agency for small businesses: brand identities, websites, marketplace listings. Cult Notice was a Gen Z clothing brand built from scratch. Neither was a tech startup, and that turned out to be the point: before I ever shipped software, I learned that products live or die on whether you understand the people they're for.",
+      facts: [
+        "Co-founder · DigiArc — digital marketing agency for SMBs · Jan–Mar 2024",
+        "Co-founder · Cult Notice — Gen Z clothing brand · Dec 2024–Apr 2025",
+      ],
+      outcome: "What changed: building became about people, not tools.",
+    },
+    {
+      // [review: add CS50 / certification completion dates when confirmed]
+      stage: "foundations · CS50",
+      headline: "Then I learned to ship software.",
+      narrative:
+        "Harvard's CS50 and CS50P gave me the fundamentals; the final project made them real. Daily Digital Diary — a Chrome extension that turns your own browsing history into mindful insight — was the first thing I built that strangers could install. IBM's Enterprise Design Thinking certification pulled the two threads together: engineering on one side, how humans actually behave on the other.",
+      facts: [
+        "CS50: Introduction to Computer Science",
+        "CS50: Introduction to Programming with Python",
+        "IBM Enterprise Design Thinking Co-Creator",
+        "Shipped: Daily Digital Diary — CS50 final project",
+      ],
+      outcome: "What changed: from selling products to building them.",
+    },
+    {
+      stage: "2025 · the deep end",
+      headline: "Formal training, real stakes.",
+      narrative:
+        "A B.Tech in Computer Science (AI/ML) at Bennett University made the interest official. The same stretch brought the GeeksforGeeks junior core, a Smart India Hackathon build for waste management, and an internship at ElevenX working on leads, outreach and growth. Building was never the hard part — this is where I started learning distribution, the part most engineers skip.",
+      facts: [
+        "B.Tech CSE (AI/ML) · Bennett University · Aug 2025–2029",
+        "Intern · ElevenX — sales & marketing · Oct 2025–present",
+        "Tech member (junior core) · GFG Club, Bennett University · 2025–present",
+        "Operations & management · Makana Express — import-export · ongoing",
+        "Built: SwachSarthi @ Smart India Hackathon",
+      ],
+      outcome: "What changed: I started thinking like a founder again — with real engineering underneath.",
+    },
+    {
+      stage: "now · shipping",
+      headline: "Ship, learn, repeat.",
+      narrative:
+        "Mirror is live in production. ChessMate is open source. Torch — design-to-docs automation — is on the bench right now. The through-line hasn't changed since the agency days: understand people first, engineer second. I'm looking for the rooms where that instinct compounds — internships and founding teams building products that actually ship.",
+      facts: [
+        "Mirror · live at usemirror.dev",
+        "ChessMate · open source",
+        "Torch · in progress",
+        "Open to internships & founding-team roles",
+      ],
+    },
+  ] satisfies JourneyChapter[],
+  closing: {
+    quote:
+      "Building is genuinely the only thing I'm good at. Everything else is just noise I'm trying to tune out.",
+    note: "— the honest version, straight from the README",
+  },
+}
 
 export type Project = {
   title: string
@@ -158,80 +207,3 @@ export const skills = {
   },
 }
 
-export const workExperience = [
-  {
-    date: "Oct 2025 -- Present",
-    role: "Intern",
-    company: "ElevenX",
-    description:
-      "Contributing to ElevenX's sales and marketing team with a focus on leads, outreach, strategy and growth.",
-    highlights: [
-      "Leading outreach initiatives and lead generation campaigns",
-      "Developing strategy for growth and engagement",
-      "Collaborating across teams on product-market positioning",
-    ],
-  },
-  {
-    date: "Ongoing",
-    role: "Operations & Management",
-    company: "Makana Express",
-    description:
-      "Contributing to an import-export business handling management, operations, and social media.",
-    highlights: [
-      "Managing day-to-day operations and logistics",
-      "Running social media presence and outreach",
-      "Streamlining internal processes and workflows",
-    ],
-  },
-]
-
-export const voluntaryExperience = [
-  {
-    date: "2025 -- Present",
-    role: "Tech Member (Junior Core)",
-    company: "GFG Club, Bennett University",
-    description:
-      "Active member of the GeeksforGeeks student chapter, contributing to technical events and community engagement.",
-    highlights: [
-      "Organizing coding events and workshops",
-      "Contributing to club's technical initiatives",
-      "Mentoring peers on programming fundamentals",
-    ],
-  },
-  {
-    date: "Jan 2024 -- Mar 2024",
-    role: "Co-Founder",
-    company: "DigiArc",
-    description:
-      "Founded a digital marketing agency that developed brand identity and social media strategy for SMBs, building websites and managing marketplaces.",
-    highlights: [
-      "Built websites and managed marketplace listings for clients",
-      "Developed social media growth strategies for small businesses",
-      "Drove end-to-end brand identity creation and digital presence",
-    ],
-  },
-  {
-    date: "Dec 2024 -- Apr 2025",
-    role: "Co-Founder",
-    company: "Cult Notice",
-    description:
-      "Launched a Gen Z-focused clothing brand offering versatile designs that blend cultural elements with modern aesthetics.",
-    highlights: [
-      "Built brand identity from scratch targeting Gen Z audience",
-      "Managed end-to-end product design and marketing",
-      "Developed social media strategy and brand positioning",
-    ],
-  },
-]
-
-export const certifications = [
-  "CS50: Introduction to Computer Science",
-  "CS50: Introduction to Programming with Python",
-  "IBM Enterprise Design Thinking Co-Creator",
-]
-
-export const education = {
-  university: "Bennett University",
-  degree: "B.Tech in Computer Science and Engineering (AI/ML)",
-  period: "Aug 2025 -- 2029",
-}

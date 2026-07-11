@@ -44,7 +44,7 @@ export function SiteNav() {
               <a
                 key={link.href}
                 href={link.href}
-                aria-current={isActive ? "true" : undefined}
+                aria-current={isActive ? "location" : undefined}
                 className={cn(
                   "relative px-3 py-1.5 text-xs font-medium transition-colors duration-(--duration-hover)",
                   isActive
@@ -100,7 +100,7 @@ export function SiteNav() {
                 key={link.href}
                 href={link.href}
                 aria-label={link.label}
-                aria-current={isActive ? "true" : undefined}
+                aria-current={isActive ? "location" : undefined}
                 className="flex min-h-11 items-center gap-1.5 px-2.5"
               >
                 <span

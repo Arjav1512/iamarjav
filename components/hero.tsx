@@ -40,7 +40,7 @@ export function Hero() {
         >
           <p className="font-mono text-xs leading-relaxed text-muted-foreground sm:text-sm">
             <span className="status-dot mr-2.5" aria-hidden="true" />
-            {hero.status.join("  ·  ")}
+            {hero.status.join(" · ")}
           </p>
           <p className="pl-[18px] font-mono text-xs text-muted-foreground/80">
             {hero.availability}

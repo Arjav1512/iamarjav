@@ -1,118 +1,87 @@
-"use client"
+import { ArrowUpRight } from "lucide-react"
+import { contact, hero, siteConfig } from "@/data/content"
+import { Section } from "@/components/primitives/section"
+import { Reveal } from "@/components/primitives/reveal"
+import { CopyEmailButton } from "@/components/copy-email-button"
 
-import { useRef, useState } from "react"
-import { siteConfig } from "@/data/content"
-import { useParallax } from "@/hooks/use-parallax"
-import { ArrowUpRight, Copy, Check, Mail, MapPin, Sparkles } from "lucide-react"
-
+/*
+ * The emotional close: an invitation, not a form. Bookends the hero —
+ * same pulsing status dot, same display-type confidence — and funnels
+ * everything into one tactile action. Absorbs the old Skills section as
+ * a single quiet toolbox line.
+ */
 export function ContactSection() {
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const cardsRef = useRef<HTMLDivElement>(null)
-  const [emailCopied, setEmailCopied] = useState(false)
-
-  const sectionOffset = useParallax(sectionRef, { speed: 0.015, maxOffset: 10 })
-  const cardsOffset = useParallax(cardsRef, { speed: 0.02, maxOffset: 10 })
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(siteConfig.email)
-    setEmailCopied(true)
-    setTimeout(() => setEmailCopied(false), 2000)
-  }
-
   return (
-    <section
-      id="contact"
-      className="mb-8 scroll-mt-16 md:mb-12 lg:mb-16 lg:scroll-mt-24"
-      aria-label="Get in touch"
-    >
-      {/* Mobile sticky header */}
-      <div className="sticky top-0 z-20 -mx-6 mb-4 bg-background/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:px-12 lg:hidden">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground">
-          Contact
-        </h2>
-      </div>
-
-      {/* Desktop section heading */}
-      <div className="hidden lg:flex items-center gap-4 mb-10" aria-hidden="true">
-        <span className="text-xs font-bold uppercase tracking-widest text-foreground/70 shrink-0">
-          Contact
-        </span>
-        <div className="flex-1 h-px bg-border" />
-      </div>
-
-      {/* Intro block */}
-      <div
-        ref={sectionRef}
-        className="mb-10 will-change-transform"
-        style={{ transform: `translateY(${sectionOffset}px)` }}
-      >
-        <div className="flex items-center gap-2 mb-4">
-          <Sparkles className="size-4 text-primary" />
-          <span className="text-xs font-bold uppercase tracking-widest text-primary">
-            {"Let's talk"}
-          </span>
-        </div>
-        <h3 className="text-2xl font-bold tracking-tight text-foreground mb-3 text-balance">
-          {"Got an idea, a project, or just want to say hi?"}
-        </h3>
-        <p className="text-sm leading-relaxed text-muted-foreground max-w-md">
-          {"I'm always up for a good conversation -- whether it's a potential collaboration, a cool AI problem, a startup you're thinking about, or just swapping ideas over coffee. Drop me a line and let's see where it goes."}
+    <Section id="contact" index={3} title="Contact" className="mb-0 pb-8">
+      <Reveal>
+        <p className="font-mono text-xs text-muted-foreground">
+          <span className="status-dot mr-2.5" aria-hidden="true" />
+          {hero.availability}
         </p>
-      </div>
+        <h3 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-[-0.02em] text-foreground sm:text-6xl">
+          {contact.headlineLines.map((line) => (
+            <span key={line} className="block">
+              {line}
+            </span>
+          ))}
+        </h3>
+        <p className="mt-6 max-w-prose text-base leading-relaxed text-muted-foreground">
+          {contact.sub}
+        </p>
+      </Reveal>
 
-      {/* Contact card */}
-      <div
-        ref={cardsRef}
-        className="will-change-transform"
-        style={{ transform: `translateY(${cardsOffset}px)` }}
-      >
-        {/* Email card -- primary action */}
-        <div className="group relative mb-4 rounded-xl border border-border bg-card/40 p-5 transition-all duration-300 card-hover hover:border-primary/25 hover:bg-card">
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                <Mail className="size-5" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground">Email</p>
-                <p className="text-xs text-muted-foreground mt-0.5">{siteConfig.email}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handleCopyEmail}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-all hover:border-foreground/20 hover:text-foreground active:scale-95"
-                aria-label="Copy email address"
-              >
-                {emailCopied ? (
-                  <>
-                    <Check className="size-3" />
-                    Copied
-                  </>
-                ) : (
-                  <>
-                    <Copy className="size-3" />
-                    Copy
-                  </>
-                )}
-              </button>
+      <Reveal index={1} className="mt-10 sm:mt-12">
+        <CopyEmailButton
+          email={siteConfig.email}
+          idleLabel={contact.cta.idle}
+          copiedLabel={contact.cta.copied}
+        />
+        <p className="mt-4 font-mono text-xs text-muted-foreground">
+          or write directly:{" "}
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="link-underline text-foreground"
+          >
+            {siteConfig.email}
+          </a>
+        </p>
+      </Reveal>
+
+      {/* Channels — the social area as part of the experience, not a footer utility */}
+      <Reveal index={2} className="mt-16 sm:mt-20">
+        <ul className="grid gap-x-10 sm:grid-cols-2">
+          {contact.channels.map((channel) => (
+            <li key={channel.label} className="border-t border-border">
               <a
-                href={`mailto:${siteConfig.email}`}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-all hover:opacity-90 active:scale-95"
+                href={channel.href}
+                {...(channel.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className="group flex items-baseline justify-between gap-4 py-4 transition-colors duration-(--duration-hover)"
               >
-                Send
-                <ArrowUpRight className="size-3" />
+                <span className="font-mono text-xs text-muted-foreground transition-colors duration-(--duration-hover) group-hover:text-foreground">
+                  {channel.label}
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
+                  {channel.handle}
+                  <ArrowUpRight
+                    className="size-3.5 text-muted-foreground transition-all duration-(--duration-hover) group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground motion-reduce:transition-none"
+                    aria-hidden="true"
+                  />
+                </span>
               </a>
-            </div>
-          </div>
-        </div>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
 
-        {/* Location indicator */}
-        <div className="flex items-center gap-2 px-1">
-          <MapPin className="size-3.5 text-muted-foreground/50" />
-          <span className="text-xs text-muted-foreground/60">{siteConfig.location}</span>
-        </div>
-      </div>
-    </section>
+      {/* Toolbox — the Skills section, absorbed into one honest line */}
+      <Reveal index={3} className="mt-14">
+        <p className="font-mono text-xs leading-relaxed text-muted-foreground">
+          <span className="text-muted-foreground/60">usually reaching for — </span>
+          {contact.toolbox.join(" · ")}
+        </p>
+      </Reveal>
+    </Section>
   )
 }

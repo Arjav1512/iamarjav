@@ -1,10 +1,16 @@
+import { siteConfig } from "@/data/content"
+
 export function Footer() {
   return (
-    <footer className="pb-16 sm:pb-0">
-      <div className="h-px w-full bg-border mb-8" aria-hidden="true" />
-      <p className="text-sm text-muted-foreground leading-relaxed">
-        {"Built with ❤️ and a lot of tweaking at odd hours."}
-      </p>
+    <footer className="border-t border-border py-8 pb-24 md:pb-8">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          {"Built with ❤️ and a lot of tweaking at odd hours."}
+        </p>
+        <p className="font-mono text-xs text-muted-foreground/70">
+          {siteConfig.name.toLowerCase()} · {siteConfig.location.toLowerCase()}
+        </p>
+      </div>
     </footer>
   )
 }

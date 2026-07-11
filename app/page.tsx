@@ -2,7 +2,7 @@ import { SiteNav } from "@/components/site-nav"
 import { Hero } from "@/components/hero"
 import { AboutSection } from "@/components/sections/about"
 import { ExperienceSection } from "@/components/sections/experience"
-import { ProjectsSection } from "@/components/sections/projects"
+import { WorkSection } from "@/components/sections/work"
 import { SkillsSection } from "@/components/sections/skills"
 import { ContactSection } from "@/components/sections/contact"
 import { Footer } from "@/components/footer"
@@ -22,7 +22,7 @@ export default function Home() {
       <main id="main" className="mx-auto max-w-3xl px-6 pt-(--spacing-section-sm) md:px-12 lg:pt-(--spacing-section)">
         <AboutSection />
         <ExperienceSection />
-        <ProjectsSection />
+        <WorkSection />
         <SkillsSection />
         <ContactSection />
         <Footer />

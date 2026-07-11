@@ -51,31 +51,38 @@ export const coreStrengths = [
 
 export const projects = [
   {
-    title: "ChessMate",
-    description:
-      "A web-based chess improvement platform that helps you analyse games, understand mistakes, and train smarter using Stockfish engine evaluation paired with an AI mentor chat interface.",
-    tech: ["React", "TypeScript", "Supabase", "Stockfish", "Tailwind CSS"],
-    github: "https://github.com/Arjav1512/ChessMate-Tool",
-    demo: "#",
-  },
-  {
     title: "Mirror",
+    tagline: "An AI journal that catches your cognitive biases before you do.",
     description:
       "An AI-powered self-reflection journal that detects cognitive biases, tracks emotional patterns over time, and helps users build genuine self-awareness through daily writing.",
     tech: ["React", "Supabase", "Tailwind CSS", "Sentiment Analysis", "Edge Functions"],
     github: "https://github.com/Arjav1512/Mirror",
     demo: "https://usemirror.dev",
+    featured: true,
+  },
+  {
+    title: "ChessMate",
+    tagline: "Chess improvement with an engine that explains, not just evaluates.",
+    description:
+      "A web-based chess improvement platform that helps you analyse games, understand mistakes, and train smarter using Stockfish engine evaluation paired with an AI mentor chat interface.",
+    tech: ["React", "TypeScript", "Supabase", "Stockfish", "Tailwind CSS"],
+    github: "https://github.com/Arjav1512/ChessMate-Tool",
+    demo: "#",
+    featured: true,
   },
   {
     title: "Daily Digital Diary",
+    tagline: "A Chrome extension that turns your browsing history into mindful insight.",
     description:
       "A Chrome extension that tracks your browsing habits locally, categorises sites, and uses Gemini AI to summarise what you consumed -- nudging you toward more mindful digital behaviour.",
     tech: ["JavaScript", "Chrome APIs", "Gemini API", "HTML/CSS"],
     github: "https://github.com/Arjav1512/CS50-FinalProject",
     demo: "https://youtu.be/ZR7ZmUQUYdw",
+    featured: true,
   },
   {
     title: "Torch",
+    tagline: "Watches Figma files and writes developer-ready docs automatically.",
     description:
       "Monitors your Figma files, detects changes and generates developer-ready documentation automatically. No meetings, no manual spec writing, no back-and-forth. Currently in progress.",
     tech: ["TypeScript", "Figma API", "Automation"],
@@ -85,6 +92,7 @@ export const projects = [
   },
   {
     title: "SwachSarthi",
+    tagline: "Waste collection and compliance tracking for citizens and government bodies.",
     description:
       "A waste management system built during the Smart India Hackathon, designed for users and government bodies to streamline waste collection, reporting, and compliance tracking.",
     tech: ["Web Development", "API Integration", "Hackathon"],
@@ -93,6 +101,7 @@ export const projects = [
   },
   {
     title: "Stackit",
+    tagline: "A realistic 3D LEGO-building experience in the browser.",
     description:
       "A web-based interactive platform built in Java that delivers a realistic 3D LEGO-building experience in the browser, replicating the logic and structural accuracy of real-world LEGO sets.",
     tech: ["Java", "3D Rendering", "Web Platform"],

@@ -188,22 +188,41 @@ export const projects: Project[] = [
   },
 ]
 
-export const skills = {
-  languages: {
-    label: "Languages",
-    items: ["Python", "Java", "JavaScript", "TypeScript", "C", "SQL", "HTML/CSS"],
+export const contact = {
+  kicker: "let's talk",
+  headlineLines: ["Got an idea, a project,", "or just want to say hi?"],
+  sub: "I'm always up for a good conversation — a collaboration, a cool AI problem, a startup you're thinking about, or swapping ideas over coffee.",
+  cta: {
+    idle: "Copy my email",
+    copied: "Copied — talk soon",
   },
-  frameworks: {
-    label: "Frameworks & Tools",
-    items: ["React", "Next.js", "Tailwind CSS", "Supabase", "MongoDB"],
-  },
-  aiml: {
-    label: "AI / ML",
-    items: ["ML Fundamentals", "Scikit-learn", "NumPy", "Pandas", "Matplotlib", "Sentiment Analysis"],
-  },
-  product: {
-    label: "Product & Design",
-    items: ["Product Management", "UX Research", "Design Thinking", "Wireframing", "Prototyping"],
-  },
+  /* Absorbs the old Skills section: the tools reached for most often,
+     curated from the previous languages/frameworks/AI-ML/product lists. */
+  toolbox: [
+    "Python",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Tailwind CSS",
+    "Supabase",
+    "Scikit-learn",
+    "Pandas",
+    "UX Research",
+    "Design Thinking",
+  ],
+  channels: [
+    { label: "github", handle: "@Arjav1512", href: "https://github.com/Arjav1512" },
+    {
+      label: "linkedin",
+      handle: "arjav-jain",
+      href: "https://www.linkedin.com/in/arjav-jain-75ab712b7/",
+    },
+    { label: "x / twitter", handle: "@arjav_15", href: "https://x.com/arjav_15" },
+    {
+      label: "email",
+      handle: "arjav.jain1512@icloud.com",
+      href: "mailto:arjav.jain1512@icloud.com",
+    },
+  ],
 }
 

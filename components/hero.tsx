@@ -35,7 +35,7 @@ export function Hero() {
               <span className="status-dot mr-2.5" aria-hidden="true" />
               {hero.status.join(" · ")}
             </p>
-            <p className="pl-[18px] font-mono text-xs text-muted-foreground/80">
+            <p className="pl-[18px] font-mono text-xs text-muted-foreground">
               {hero.availability}
             </p>
           </div>

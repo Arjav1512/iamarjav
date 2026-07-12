@@ -1,9 +1,17 @@
 "use client"
 
+import { useRef } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { siteConfig } from "@/data/content"
 import { useScrollSpy } from "@/hooks/use-scroll-spy"
 import { useHideOnScroll } from "@/hooks/use-hide-on-scroll"
+import {
+  gsap,
+  MOTION,
+  useIsomorphicLayoutEffect,
+  prefersReducedMotion,
+  runWhenVisible,
+} from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
 const navLinks = [
@@ -18,14 +26,37 @@ export function SiteNav() {
   const active = useScrollSpy(sectionIds)
   const hidden = useHideOnScroll()
   const hasResume = siteConfig.resumeUrl && siteConfig.resumeUrl !== "#"
+  const navRef = useRef<HTMLElement>(null)
+
+  // Desktop nav drops in after the hero cascade has played (same motion language).
+  useIsomorphicLayoutEffect(() => {
+    const el = navRef.current
+    if (!el || prefersReducedMotion()) return
+    let ctx: gsap.Context | undefined
+    const stop = runWhenVisible(() => {
+      ctx = gsap.context(() => {
+        gsap.from(el, {
+          opacity: 0,
+          y: -8,
+          duration: MOTION.hero.duration,
+          ease: MOTION.ease,
+          delay: 0.65,
+        })
+      }, el)
+    })
+    return () => {
+      stop()
+      ctx?.revert()
+    }
+  }, [])
 
   return (
     <>
       {/* Desktop: floating pill, top center */}
       <nav
+        ref={navRef}
         aria-label="Primary"
-        className="animate-rise-in fixed left-1/2 top-5 z-40 hidden -translate-x-1/2 md:block"
-        style={{ "--rise-delay": "650ms" } as React.CSSProperties}
+        className="fixed left-1/2 top-5 z-40 hidden -translate-x-1/2 md:block"
       >
         <div className="flex items-center gap-0.5 rounded-full border border-border/70 bg-background/80 px-1.5 py-1.5 shadow-[0_2px_16px_oklch(0_0_0/0.05)] backdrop-blur-md">
           <a

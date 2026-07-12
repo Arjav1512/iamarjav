@@ -43,7 +43,7 @@ export const journey = {
       stage: "2024 · first ventures",
       headline: "Products came before code.",
       narrative:
-        "I didn't start with a text editor, I started with customers. DigiArc was a digital marketing agency for small businesses: brand identities, websites, marketplace listings. Cult Notice was a Gen Z clothing brand built from scratch. Neither was a tech startup, and that turned out to be the point: before I ever shipped software, I learned that products live or die on whether you understand the people they're for.",
+        "I didn't start with a text editor. I started with customers. DigiArc was a digital marketing agency for small businesses: brand identities, websites, marketplace listings. Cult Notice was a Gen Z clothing brand built from scratch. Neither was a tech startup, and that turned out to be the point: before I ever shipped software, I learned that products live or die on whether you understand the people they're for.",
       facts: [
         "Co-founder · DigiArc, digital marketing agency for SMBs · Jan-Mar 2024",
         "Co-founder · Cult Notice, Gen Z clothing brand · Dec 2024-Apr 2025",
@@ -68,7 +68,7 @@ export const journey = {
       stage: "2025 · the deep end",
       headline: "Formal training, real stakes.",
       narrative:
-        "A B.Tech in Computer Science (AI/ML) at Bennett University made the interest official. The same stretch brought the GeeksforGeeks junior core, a Smart India Hackathon build for waste management, and an internship at ElevenX working on leads, outreach and growth. Building was never the hard part, this is where I started learning distribution, the part most engineers skip.",
+        "A B.Tech in Computer Science (AI/ML) at Bennett University made the interest official. The same stretch brought the GeeksforGeeks junior core, a Smart India Hackathon build for waste management, and an internship at ElevenX working on leads, outreach and growth. Building was never the hard part; this is where I started learning distribution, the part most engineers skip.",
       facts: [
         "B.Tech CSE (AI/ML) · Bennett University · Aug 2025-2029",
         "Intern · ElevenX, sales & marketing · Oct 2025-present",
@@ -82,7 +82,7 @@ export const journey = {
       stage: "now · shipping",
       headline: "Ship, learn, repeat.",
       narrative:
-        "Mirror is live in production. ChessMate is open source. Torch, design-to-docs automation, is on the bench right now. The through-line hasn't changed since the agency days: understand people first, engineer second. I'm looking for the rooms where that instinct compounds, internships and founding teams building products that actually ship.",
+        "Mirror is live in production. ChessMate is open source. Torch, design-to-docs automation, is on the bench right now. The through-line hasn't changed since the agency days: understand people first, engineer second. I'm looking for the rooms where that instinct compounds: internships and founding teams building products that actually ship.",
       facts: [
         "Mirror · live at usemirror.dev",
         "ChessMate · open source",
@@ -137,7 +137,7 @@ export const projects: Project[] = [
     problem:
       "Chess engines tell you the best move, not why yours was worse. Evaluation without explanation makes you dependent on the engine instead of better at the game.",
     description:
-      "A web-based improvement platform that pairs Stockfish evaluation with an AI mentor chat, analyse your games, understand your mistakes, and train the weaknesses it finds.",
+      "A web-based improvement platform that pairs Stockfish evaluation with an AI mentor chat: analyse your games, understand your mistakes, and train the weaknesses it finds.",
     context: "open source",
     tech: ["React", "TypeScript", "Supabase", "Stockfish", "Tailwind CSS"],
     github: "https://github.com/Arjav1512/ChessMate-Tool",
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     title: "Daily Digital Diary",
     tagline: "A Chrome extension that turns your browsing history into mindful insight.",
     problem:
-      "Browsing history is a log, not a mirror, it records where your attention went without ever making you notice. Most screen-time tools also ship that data to someone else's server.",
+      "Browsing history is a log, not a mirror; it records where your attention went without ever making you notice. Most screen-time tools also ship that data to someone else's server.",
     description:
       "A Chrome extension that tracks browsing locally, categorises the sites you visit, and uses Gemini to summarise what you actually consumed, a daily nudge toward more mindful behaviour.",
     context: "CS50 final project",

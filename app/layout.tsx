@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { siteConfig } from '@/data/content'
+import { siteConfig, siteMeta } from '@/data/content'
 import './globals.css'
 
 const inter = Inter({
@@ -22,44 +22,32 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 })
 
-const SITE_URL = "https://iamarjav.me"
-const description =
-  "CS/AI student who builds and ships real products, from an AI journaling app that catches cognitive biases to a chess-coaching platform. Open to internships and founding-team roles."
-
 // icon.svg, apple-icon.png, and opengraph-image.png in /app are wired up
 // automatically by Next's file-based metadata; no manual config needed.
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(siteMeta.url),
   title: {
-    default: "Arjav Jain, AI & product builder",
-    template: "%s · Arjav Jain",
+    default: siteMeta.title,
+    template: `%s · ${siteConfig.name}`,
   },
-  description,
-  applicationName: "Arjav Jain",
-  authors: [{ name: "Arjav Jain", url: SITE_URL }],
-  creator: "Arjav Jain",
-  keywords: [
-    "Arjav Jain",
-    "product builder",
-    "AI engineer",
-    "full stack developer",
-    "founding engineer",
-    "Bennett University",
-    "portfolio",
-  ],
+  description: siteMeta.description,
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: siteMeta.url }],
+  creator: siteConfig.name,
+  keywords: siteMeta.keywords,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    url: SITE_URL,
-    siteName: "Arjav Jain",
-    title: "Arjav Jain, AI & product builder",
-    description,
+    url: siteMeta.url,
+    siteName: siteConfig.name,
+    title: siteMeta.title,
+    description: siteMeta.description,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arjav Jain, AI & product builder",
-    description,
+    title: siteMeta.title,
+    description: siteMeta.description,
     creator: "@arjav_15",
   },
   robots: {
@@ -78,17 +66,17 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: siteConfig.name,
-  url: SITE_URL,
-  jobTitle: "Full-stack & AI product builder",
+  url: siteMeta.url,
+  jobTitle: siteMeta.jobTitle,
   email: `mailto:${siteConfig.email}`,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Greater Noida",
-    addressCountry: "IN",
+    addressLocality: siteMeta.addressLocality,
+    addressCountry: siteMeta.addressCountry,
   },
   alumniOf: {
     "@type": "CollegeOrUniversity",
-    name: "Bennett University",
+    name: siteMeta.university,
   },
   sameAs: [
     siteConfig.social.github,

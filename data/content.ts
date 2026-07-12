@@ -14,6 +14,28 @@ export const siteConfig = {
   resumeUrl: "#",
 }
 
+/* SEO / metadata content — single source for titles, description, and the
+   structured-data fields, consumed by app/layout.tsx, sitemap, and robots. */
+export const siteMeta = {
+  url: "https://iamarjav.me",
+  title: "Arjav Jain, AI & product builder",
+  description:
+    "CS/AI student who builds and ships real products, from an AI journaling app that catches cognitive biases to a chess-coaching platform. Open to internships and founding-team roles.",
+  jobTitle: "Full-stack & AI product builder",
+  keywords: [
+    "Arjav Jain",
+    "product builder",
+    "AI engineer",
+    "full stack developer",
+    "founding engineer",
+    "Bennett University",
+    "portfolio",
+  ],
+  university: "Bennett University",
+  addressLocality: "Greater Noida",
+  addressCountry: "IN",
+}
+
 export const hero = {
   greeting: "hey, i'm arjav jain",
   headlineLines: ["I build things,", "break things,", "and ship a lot."],

@@ -56,8 +56,7 @@
   /* Motion tokens — calm by default, exquisite when touched */
   --duration-state: 150ms; /* state feedback: presses, icon morphs */
   --duration-hover: 250ms; /* hovers, underlines */
-  --duration-reveal: 400ms; /* scroll entrances */
-  --duration-hero: 600ms; /* hero entrance only */
+  --duration-reveal: 400ms; /* longer state transitions (magnetic spring-back) */
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -150,36 +149,9 @@ body {
 }
 
 /* ————— Motion primitives ————— */
-
-/* Scroll entrance: opacity + small rise, fires once (see useReveal) */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity var(--duration-reveal) var(--ease-out-quart),
-    transform var(--duration-reveal) var(--ease-out-quart);
-  transition-delay: var(--reveal-delay, 0ms);
-}
-.reveal.is-revealed {
-  opacity: 1;
-  transform: none;
-}
-
-/* Hero entrance: same grammar, slower, for above-the-fold only */
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-.animate-rise-in {
-  animation: rise-in var(--duration-hero) var(--ease-out-quart) both;
-  animation-delay: var(--rise-delay, 0ms);
-}
+/* Scroll entrance and hero timeline are GSAP-driven (see lib/motion.ts,
+   components/primitives/reveal.tsx, components/motion/hero-motion.tsx).
+   Hover/press state below stays CSS — GSAP would be unnecessary there. */
 
 /* Animated link underline: origin left, accent colored */
 .link-underline {
@@ -294,12 +266,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  .animate-rise-in,
   .animate-island-expand {
     animation-duration: 1ms;
   }

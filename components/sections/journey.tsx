@@ -40,7 +40,7 @@ export function JourneySection() {
                       className="flex gap-2.5 font-mono text-xs leading-relaxed text-muted-foreground"
                     >
                       <span aria-hidden="true" className="text-border">
-                        —
+                        -
                       </span>
                       {fact}
                     </li>

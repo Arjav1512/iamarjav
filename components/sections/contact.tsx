@@ -83,7 +83,7 @@ export function ContactSection() {
       {/* Toolbox — the Skills section, absorbed into one honest line */}
       <Reveal index={4} className="mt-10 border-t border-dashed border-border pt-8">
         <p className="font-mono text-xs leading-relaxed text-muted-foreground">
-          <span className="text-muted-foreground/60">usually reaching for </span>
+          <span className="text-muted-foreground">usually reaching for </span>
           {contact.toolbox.join(" · ")}
         </p>
       </Reveal>

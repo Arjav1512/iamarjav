@@ -189,13 +189,36 @@ export const projects: Project[] = [
 ]
 
 export const contact = {
-  kicker: "let's talk",
-  headlineLines: ["Got an idea, a project,", "or just want to say hi?"],
-  sub: "I'm always up for a good conversation — a collaboration, a cool AI problem, a startup you're thinking about, or swapping ideas over coffee.",
+  /* Layer 1 — the editorial closing statement. Two-tone: the second half
+     drops to muted, echoing a roman/italic contrast in a single family. */
+  statement: {
+    lead: "Good products start with people,",
+    trail: "not code.",
+  },
+  /* Layer 2 — a conversational, confident invitation. */
+  invite: {
+    headline: "Got an idea, a project, or just want to say hi?",
+    sub: "I'm always up for a good conversation — a collaboration, a cool AI problem, a startup you're thinking about, or swapping ideas over coffee.",
+  },
   cta: {
     idle: "Copy my email",
     copied: "Copied — talk soon",
   },
+  /* Layer 3 — the communication surface. Email leads (primary). */
+  channels: [
+    {
+      label: "email",
+      handle: "arjav.jain1512@icloud.com",
+      href: "mailto:arjav.jain1512@icloud.com",
+    },
+    { label: "github", handle: "@Arjav1512", href: "https://github.com/Arjav1512" },
+    {
+      label: "linkedin",
+      handle: "arjav-jain",
+      href: "https://www.linkedin.com/in/arjav-jain-75ab712b7/",
+    },
+    { label: "x / twitter", handle: "@arjav_15", href: "https://x.com/arjav_15" },
+  ],
   /* Absorbs the old Skills section: the tools reached for most often,
      curated from the previous languages/frameworks/AI-ML/product lists. */
   toolbox: [
@@ -209,20 +232,6 @@ export const contact = {
     "Pandas",
     "UX Research",
     "Design Thinking",
-  ],
-  channels: [
-    { label: "github", handle: "@Arjav1512", href: "https://github.com/Arjav1512" },
-    {
-      label: "linkedin",
-      handle: "arjav-jain",
-      href: "https://www.linkedin.com/in/arjav-jain-75ab712b7/",
-    },
-    { label: "x / twitter", handle: "@arjav_15", href: "https://x.com/arjav_15" },
-    {
-      label: "email",
-      handle: "arjav.jain1512@icloud.com",
-      href: "mailto:arjav.jain1512@icloud.com",
-    },
   ],
 }
 

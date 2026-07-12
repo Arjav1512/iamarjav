@@ -1,34 +1,26 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { ScrollTrigger, useIsomorphicLayoutEffect } from "@/lib/motion"
 
 /*
- * True while the visitor is actively scrolling down (past a small settle
- * zone), false as soon as they scroll up. Used to tuck the mobile nav
- * capsule out of the way while reading.
+ * True while scrolling down (past a small settle zone), false on scroll up.
+ * Drives the mobile nav capsule tucking away while reading. Uses a single
+ * ScrollTrigger rather than a window scroll listener (batched, no per-frame
+ * React work) and kills it on unmount.
  */
 export function useHideOnScroll(threshold = 120) {
   const [hidden, setHidden] = useState(false)
 
-  useEffect(() => {
-    let last = window.scrollY
-    let raf = 0
-
-    const onScroll = () => {
-      if (raf) cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(() => {
-        const y = window.scrollY
-        if (y > last + 4 && y > threshold) setHidden(true)
-        else if (y < last - 4) setHidden(false)
-        last = y
-      })
-    }
-
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => {
-      window.removeEventListener("scroll", onScroll)
-      if (raf) cancelAnimationFrame(raf)
-    }
+  useIsomorphicLayoutEffect(() => {
+    const trigger = ScrollTrigger.create({
+      start: 0,
+      end: "max",
+      onUpdate: (self) => {
+        setHidden(self.direction === 1 && self.scroll() > threshold)
+      },
+    })
+    return () => trigger.kill()
   }, [threshold])
 
   return hidden

@@ -15,10 +15,10 @@ export const siteConfig = {
 }
 
 export const hero = {
-  greeting: "hey — i'm arjav jain",
+  greeting: "hey, i'm arjav jain",
   headlineLines: ["I build things,", "break things,", "and ship a lot."],
   status: [
-    "now building Torch — design-to-docs automation",
+    "now building Torch, design-to-docs automation",
     "intern @ ElevenX",
     "CS/AI @ Bennett '29",
   ],
@@ -43,10 +43,10 @@ export const journey = {
       stage: "2024 · first ventures",
       headline: "Products came before code.",
       narrative:
-        "I didn't start with a text editor — I started with customers. DigiArc was a digital marketing agency for small businesses: brand identities, websites, marketplace listings. Cult Notice was a Gen Z clothing brand built from scratch. Neither was a tech startup, and that turned out to be the point: before I ever shipped software, I learned that products live or die on whether you understand the people they're for.",
+        "I didn't start with a text editor, I started with customers. DigiArc was a digital marketing agency for small businesses: brand identities, websites, marketplace listings. Cult Notice was a Gen Z clothing brand built from scratch. Neither was a tech startup, and that turned out to be the point: before I ever shipped software, I learned that products live or die on whether you understand the people they're for.",
       facts: [
-        "Co-founder · DigiArc — digital marketing agency for SMBs · Jan–Mar 2024",
-        "Co-founder · Cult Notice — Gen Z clothing brand · Dec 2024–Apr 2025",
+        "Co-founder · DigiArc, digital marketing agency for SMBs · Jan-Mar 2024",
+        "Co-founder · Cult Notice, Gen Z clothing brand · Dec 2024-Apr 2025",
       ],
       outcome: "What changed: building became about people, not tools.",
     },
@@ -55,12 +55,12 @@ export const journey = {
       stage: "foundations · CS50",
       headline: "Then I learned to ship software.",
       narrative:
-        "Harvard's CS50 and CS50P gave me the fundamentals; the final project made them real. Daily Digital Diary — a Chrome extension that turns your own browsing history into mindful insight — was the first thing I built that strangers could install. IBM's Enterprise Design Thinking certification pulled the two threads together: engineering on one side, how humans actually behave on the other.",
+        "Harvard's CS50 and CS50P gave me the fundamentals; the final project made them real. Daily Digital Diary, a Chrome extension that turns your own browsing history into mindful insight, was the first thing I built that strangers could install. IBM's Enterprise Design Thinking certification pulled the two threads together: engineering on one side, how humans actually behave on the other.",
       facts: [
         "CS50: Introduction to Computer Science",
         "CS50: Introduction to Programming with Python",
         "IBM Enterprise Design Thinking Co-Creator",
-        "Shipped: Daily Digital Diary — CS50 final project",
+        "Shipped: Daily Digital Diary, CS50 final project",
       ],
       outcome: "What changed: from selling products to building them.",
     },
@@ -68,21 +68,21 @@ export const journey = {
       stage: "2025 · the deep end",
       headline: "Formal training, real stakes.",
       narrative:
-        "A B.Tech in Computer Science (AI/ML) at Bennett University made the interest official. The same stretch brought the GeeksforGeeks junior core, a Smart India Hackathon build for waste management, and an internship at ElevenX working on leads, outreach and growth. Building was never the hard part — this is where I started learning distribution, the part most engineers skip.",
+        "A B.Tech in Computer Science (AI/ML) at Bennett University made the interest official. The same stretch brought the GeeksforGeeks junior core, a Smart India Hackathon build for waste management, and an internship at ElevenX working on leads, outreach and growth. Building was never the hard part, this is where I started learning distribution, the part most engineers skip.",
       facts: [
-        "B.Tech CSE (AI/ML) · Bennett University · Aug 2025–2029",
-        "Intern · ElevenX — sales & marketing · Oct 2025–present",
-        "Tech member (junior core) · GFG Club, Bennett University · 2025–present",
-        "Operations & management · Makana Express — import-export · ongoing",
+        "B.Tech CSE (AI/ML) · Bennett University · Aug 2025-2029",
+        "Intern · ElevenX, sales & marketing · Oct 2025-present",
+        "Tech member (junior core) · GFG Club, Bennett University · 2025-present",
+        "Operations & management · Makana Express, import-export · ongoing",
         "Built: SwachSarthi @ Smart India Hackathon",
       ],
-      outcome: "What changed: I started thinking like a founder again — with real engineering underneath.",
+      outcome: "What changed: I started thinking like a founder again, with real engineering underneath.",
     },
     {
       stage: "now · shipping",
       headline: "Ship, learn, repeat.",
       narrative:
-        "Mirror is live in production. ChessMate is open source. Torch — design-to-docs automation — is on the bench right now. The through-line hasn't changed since the agency days: understand people first, engineer second. I'm looking for the rooms where that instinct compounds — internships and founding teams building products that actually ship.",
+        "Mirror is live in production. ChessMate is open source. Torch, design-to-docs automation, is on the bench right now. The through-line hasn't changed since the agency days: understand people first, engineer second. I'm looking for the rooms where that instinct compounds, internships and founding teams building products that actually ship.",
       facts: [
         "Mirror · live at usemirror.dev",
         "ChessMate · open source",
@@ -94,7 +94,7 @@ export const journey = {
   closing: {
     quote:
       "Building is genuinely the only thing I'm good at. Everything else is just noise I'm trying to tune out.",
-    note: "— the honest version, straight from the README",
+    note: "the honest version, straight from the README",
   },
 }
 
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     title: "Mirror",
     tagline: "An AI journal that catches your cognitive biases before you do.",
     problem:
-      "Journaling apps are good at storing thoughts and bad at revealing patterns. Your own cognitive biases are, by definition, the ones you can't see — so writing alone rarely turns into self-awareness.",
+      "Journaling apps are good at storing thoughts and bad at revealing patterns. Your own cognitive biases are, by definition, the ones you can't see, so writing alone rarely turns into self-awareness.",
     description:
       "An AI-powered self-reflection journal that detects cognitive biases in what you write, tracks emotional patterns over time, and turns daily entries into genuine self-awareness.",
     context: "live in production",
@@ -137,7 +137,7 @@ export const projects: Project[] = [
     problem:
       "Chess engines tell you the best move, not why yours was worse. Evaluation without explanation makes you dependent on the engine instead of better at the game.",
     description:
-      "A web-based improvement platform that pairs Stockfish evaluation with an AI mentor chat — analyse your games, understand your mistakes, and train the weaknesses it finds.",
+      "A web-based improvement platform that pairs Stockfish evaluation with an AI mentor chat, analyse your games, understand your mistakes, and train the weaknesses it finds.",
     context: "open source",
     tech: ["React", "TypeScript", "Supabase", "Stockfish", "Tailwind CSS"],
     github: "https://github.com/Arjav1512/ChessMate-Tool",
@@ -148,9 +148,9 @@ export const projects: Project[] = [
     title: "Daily Digital Diary",
     tagline: "A Chrome extension that turns your browsing history into mindful insight.",
     problem:
-      "Browsing history is a log, not a mirror — it records where your attention went without ever making you notice. Most screen-time tools also ship that data to someone else's server.",
+      "Browsing history is a log, not a mirror, it records where your attention went without ever making you notice. Most screen-time tools also ship that data to someone else's server.",
     description:
-      "A Chrome extension that tracks browsing locally, categorises the sites you visit, and uses Gemini to summarise what you actually consumed — a daily nudge toward more mindful behaviour.",
+      "A Chrome extension that tracks browsing locally, categorises the sites you visit, and uses Gemini to summarise what you actually consumed, a daily nudge toward more mindful behaviour.",
     context: "CS50 final project",
     tech: ["JavaScript", "Chrome APIs", "Gemini API", "HTML/CSS"],
     github: "https://github.com/Arjav1512/CS50-FinalProject",
@@ -198,11 +198,11 @@ export const contact = {
   /* Layer 2 — a conversational, confident invitation. */
   invite: {
     headline: "Got an idea, a project, or just want to say hi?",
-    sub: "I'm always up for a good conversation — a collaboration, a cool AI problem, a startup you're thinking about, or swapping ideas over coffee.",
+    sub: "I'm always up for a good conversation, a collaboration, a cool AI problem, a startup you're thinking about, or swapping ideas over coffee.",
   },
   cta: {
     idle: "Copy my email",
-    copied: "Copied — talk soon",
+    copied: "Copied, talk soon",
   },
   /* Layer 3 — the communication surface. Email leads (primary). */
   channels: [

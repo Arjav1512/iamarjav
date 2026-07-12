@@ -33,7 +33,7 @@ function BrowserFrame({ project }: { project: Project }) {
           <span className="size-2 rounded-full bg-border" />
         </span>
         <span className="min-w-0 flex-1 truncate text-center font-mono text-[11px] text-muted-foreground">
-          {url ? displayUrl(url) : `${project.title.toLowerCase().replace(/\s+/g, "")} — coming soon`}
+          {url ? displayUrl(url) : `${project.title.toLowerCase().replace(/\s+/g, "")} (coming soon)`}
         </span>
         <span className="w-[42px]" aria-hidden="true" />
       </div>
@@ -75,7 +75,7 @@ function ProjectLinks({ project, className }: { project: Project; className?: st
             className="size-3.5 transition-transform duration-(--duration-hover) group-hover/live:translate-x-0.5 group-hover/live:-translate-y-0.5 motion-reduce:transition-none"
             aria-hidden="true"
           />
-          <span className="sr-only">— {project.title}</span>
+          <span className="sr-only">, {project.title}</span>
         </a>
       )}
       {hasUrl(project.github) && (
@@ -87,7 +87,7 @@ function ProjectLinks({ project, className }: { project: Project; className?: st
         >
           <Github className="size-3.5" aria-hidden="true" />
           Code
-          <span className="sr-only">— {project.title}</span>
+          <span className="sr-only">, {project.title}</span>
         </a>
       )}
     </div>

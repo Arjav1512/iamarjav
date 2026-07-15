@@ -14,7 +14,7 @@ import { CopyEmailButton } from "@/components/copy-email-button"
  */
 export function ContactSection() {
   return (
-    <Section id="contact" index={3} title="Contact" className="mb-0 pb-8">
+    <Section id="contact" index={5} title="Contact" className="mb-0 pb-8">
       {/* availability — the hero's dot, returning at the end */}
       <Reveal>
         <p className="font-mono text-xs text-muted-foreground">

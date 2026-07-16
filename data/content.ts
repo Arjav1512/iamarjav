@@ -178,6 +178,8 @@ export type Project = {
   title: string
   /** One-line thesis shown under the title. */
   tagline: string
+  /** Honest product category shown as a badge on the launch cover (featured only). */
+  badge?: string
   /** What it is / what makes the build interesting. */
   description: string
   /** Why it exists — the problem that made it worth building (featured only). */
@@ -199,6 +201,7 @@ export const projects: Project[] = [
   {
     title: "ChessMate",
     tagline: "Chess improvement with an engine that explains, not just evaluates.",
+    badge: "chess improvement platform · live",
     problem:
       "Chess engines tell you the best move, not why yours was worse. Evaluation without explanation makes you dependent on the engine instead of better at the game.",
     description:
@@ -214,6 +217,7 @@ export const projects: Project[] = [
   {
     title: "Mirror",
     tagline: "An AI journal that catches your cognitive biases before you do.",
+    badge: "ai self-reflection journal · live",
     problem:
       "Journaling apps are good at storing thoughts and bad at revealing patterns. Your own cognitive biases are, by definition, the ones you can't see, so writing alone rarely turns into self-awareness.",
     description:
@@ -229,6 +233,7 @@ export const projects: Project[] = [
   {
     title: "Torch",
     tagline: "Watches Figma files and writes developer-ready docs automatically.",
+    badge: "figma automation · in progress",
     problem:
       "Design changes travel to developers through meetings, screenshots and guesswork. The information already exists in Figma; the handoff is where it gets lost.",
     description:

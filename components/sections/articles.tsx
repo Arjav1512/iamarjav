@@ -5,14 +5,15 @@ import { Section } from "@/components/primitives/section"
 import { Reveal } from "@/components/primitives/reveal"
 
 /*
- * Editorial article list: title, teaser, arrow. Each row routes to its own
- * article page (production routing; pieces are drafts for now and say so).
+ * Editorial archive: an index of essays, typography-first. Mono numerals,
+ * display titles, one-line teasers, and an honest status column; drafts
+ * say "draft", not "coming soon". Each row routes to its article page.
  */
 export function ArticlesSection() {
   return (
     <Section id="articles" index={4} title="Articles">
       <Reveal>
-        <ul>
+        <ol>
           {articles.map((article, i) => (
             <li
               key={article.slug}
@@ -22,29 +23,36 @@ export function ArticlesSection() {
             >
               <Link
                 href={`/articles/${article.slug}`}
-                className="flex items-baseline justify-between gap-6 py-6"
+                className="grid grid-cols-[auto_1fr] gap-x-5 py-7 sm:grid-cols-[auto_1fr_auto] sm:gap-x-8"
               >
+                <span
+                  className="pt-1.5 font-mono text-[11px] text-muted-foreground"
+                  aria-hidden="true"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <div className="min-w-0">
-                  <h3 className="font-display text-lg font-semibold tracking-tight text-foreground transition-colors duration-(--duration-hover) group-hover:text-accent sm:text-xl">
+                  <h3 className="font-display text-xl font-semibold tracking-tight text-foreground transition-colors duration-(--duration-hover) group-hover:text-accent sm:text-2xl">
                     {article.title}
                   </h3>
-                  <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-2 max-w-[52ch] text-sm leading-relaxed text-muted-foreground">
                     {article.teaser}
                   </p>
-                  {article.status === "draft" && (
-                    <p className="mt-2 font-mono text-[11px] text-muted-foreground">
-                      coming soon
-                    </p>
-                  )}
+                  <p className="mt-2.5 font-mono text-[11px] text-muted-foreground sm:hidden">
+                    {article.status === "draft" ? "draft" : "published"}
+                  </p>
                 </div>
-                <ArrowUpRight
-                  className="size-4 shrink-0 self-center text-muted-foreground transition-all duration-(--duration-hover) group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground motion-reduce:transition-none"
-                  aria-hidden="true"
-                />
+                <span className="hidden items-center gap-2 self-start pt-1.5 font-mono text-[11px] text-muted-foreground sm:flex">
+                  {article.status === "draft" ? "draft" : "published"}
+                  <ArrowUpRight
+                    className="size-3.5 transition-transform duration-(--duration-hover) group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
+                    aria-hidden="true"
+                  />
+                </span>
               </Link>
             </li>
           ))}
-        </ul>
+        </ol>
       </Reveal>
     </Section>
   )

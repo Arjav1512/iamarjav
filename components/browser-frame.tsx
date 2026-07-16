@@ -1,11 +1,18 @@
 import { cn } from "@/lib/utils"
 
+/** Where the launch-cover content sits; each featured project gets its own. */
+export type CoverAlign = "center" | "start" | "end"
+
 interface BrowserFrameProps {
   title: string
-  /** One-line thesis shown on the placeholder cover. */
+  /** One-line thesis shown on the launch cover. */
   tagline?: string
+  /** Honest product category badge, e.g. "figma automation · in progress". */
+  badge?: string
   /** Real destination shown in the address bar; omit for in-progress work. */
   url?: string
+  /** Composition of the launch cover; varies per project so covers never repeat. */
+  cover?: CoverAlign
   /** Real screenshot/GIF; the designed cover renders until this exists. */
   media?: { src: string; alt: string }
   className?: string
@@ -15,14 +22,50 @@ interface BrowserFrameProps {
 const displayUrl = (url: string) =>
   url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")
 
+/* Per-composition cover treatment: content placement, text alignment, grid
+   focal point, and wordmark scale. Geometry (16:9) is shared, rhythm is not. */
+const COVERS: Record<
+  CoverAlign,
+  { layout: string; mask: string; wordmark: string; tagline: string }
+> = {
+  center: {
+    layout: "items-center justify-center text-center px-8",
+    mask: "radial-gradient(ellipse at center, black 30%, transparent 78%)",
+    wordmark: "text-4xl sm:text-5xl",
+    tagline: "max-w-[38ch]",
+  },
+  start: {
+    layout: "items-start justify-end text-left p-7 sm:p-10",
+    mask: "radial-gradient(ellipse at 20% 80%, black 20%, transparent 72%)",
+    wordmark: "text-3xl sm:text-4xl",
+    tagline: "max-w-[34ch]",
+  },
+  end: {
+    layout: "items-end justify-center text-right p-7 sm:p-10",
+    mask: "radial-gradient(ellipse at 80% 45%, black 20%, transparent 72%)",
+    wordmark: "text-3xl sm:text-4xl",
+    tagline: "max-w-[34ch]",
+  },
+}
+
 /*
  * Browser-chrome media frame. Renders real media when it exists; until
- * then the body is a designed cover: wordmark + thesis over a faint
- * blueprint grid, never a gray rectangle. Swapping in a screenshot later
- * is a content change only; geometry is identical in both states.
+ * then the body is a designed launch cover: badge + wordmark + thesis over
+ * a faint blueprint grid, never a gray rectangle. Swapping in a screenshot
+ * later is a content change only; geometry is identical in both states.
  * The whole frame lifts subtly on group hover (transform + shadow only).
  */
-export function BrowserFrame({ title, tagline, url, media, className }: BrowserFrameProps) {
+export function BrowserFrame({
+  title,
+  tagline,
+  badge,
+  url,
+  cover = "center",
+  media,
+  className,
+}: BrowserFrameProps) {
+  const c = COVERS[cover]
+
   return (
     <div
       className={cn(
@@ -52,7 +95,7 @@ export function BrowserFrame({ title, tagline, url, media, className }: BrowserF
         />
       ) : (
         <div
-          className="relative flex aspect-[16/9] flex-col items-center justify-center gap-3 bg-secondary/30 px-8 text-center"
+          className={cn("relative flex aspect-[16/9] flex-col gap-3 bg-secondary/30", c.layout)}
           aria-hidden="true"
         >
           {/* Faint blueprint grid so the cover reads designed, not empty */}
@@ -61,15 +104,30 @@ export function BrowserFrame({ title, tagline, url, media, className }: BrowserF
             style={{
               backgroundImage:
                 "repeating-linear-gradient(0deg, var(--border) 0 1px, transparent 1px 32px), repeating-linear-gradient(90deg, var(--border) 0 1px, transparent 1px 32px)",
-              maskImage: "radial-gradient(ellipse at center, black 30%, transparent 78%)",
-              WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 78%)",
+              maskImage: c.mask,
+              WebkitMaskImage: c.mask,
             }}
           />
-          <span className="relative font-display text-3xl font-bold tracking-tight text-foreground/80 transition-colors duration-(--duration-hover) group-hover:text-foreground sm:text-4xl">
+          {badge && (
+            <span className="relative rounded-full border border-border bg-background/70 px-3 py-1 font-mono text-[10px] tracking-wide text-muted-foreground">
+              {badge}
+            </span>
+          )}
+          <span
+            className={cn(
+              "relative font-display font-bold tracking-tight text-foreground/80 transition-colors duration-(--duration-hover) group-hover:text-foreground",
+              c.wordmark
+            )}
+          >
             {title}
           </span>
           {tagline && (
-            <span className="relative max-w-[38ch] font-mono text-[11px] leading-relaxed text-muted-foreground">
+            <span
+              className={cn(
+                "relative font-mono text-[11px] leading-relaxed text-muted-foreground",
+                c.tagline
+              )}
+            >
               {tagline}
             </span>
           )}

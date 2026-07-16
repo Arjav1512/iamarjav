@@ -3,7 +3,7 @@ import { projects, type Project } from "@/data/content"
 import { Section } from "@/components/primitives/section"
 import { Reveal } from "@/components/primitives/reveal"
 import { Tag } from "@/components/primitives/tag"
-import { BrowserFrame } from "@/components/browser-frame"
+import { BrowserFrame, type CoverAlign } from "@/components/browser-frame"
 import { cn } from "@/lib/utils"
 
 const hasUrl = (url?: string) => !!url && url !== "#"
@@ -28,13 +28,19 @@ function StoryBlock({ label, children }: { label: string; children: React.ReactN
  * per index so the eye zig-zags instead of scrolling a repeated card.
  * Media frames are layout-final placeholders until real screenshots land.
  */
-const COMPOSITIONS = [
+const COMPOSITIONS: {
+  text: string
+  media: string
+  mediaLeft: boolean
+  align: string
+  cover: CoverAlign
+}[] = [
   // 1 · ChessMate: text left, large media right, media dips below the text
-  { text: "lg:col-span-5", media: "lg:col-span-7 lg:mt-14", mediaLeft: false, align: "items-start" },
+  { text: "lg:col-span-5", media: "lg:col-span-7 lg:mt-14", mediaLeft: false, align: "items-start", cover: "center" },
   // 2 · Mirror: media left riding high, text right vertically centered
-  { text: "lg:col-span-6 lg:self-center lg:pl-6", media: "lg:col-span-6 lg:-mt-6", mediaLeft: true, align: "items-start" },
+  { text: "lg:col-span-6 lg:self-center lg:pl-6", media: "lg:col-span-6 lg:-mt-6", mediaLeft: true, align: "items-start", cover: "start" },
   // 3 · Torch: narrow text left, widest media right rising above the baseline
-  { text: "lg:col-span-4", media: "lg:col-span-8 lg:-mt-10", mediaLeft: false, align: "items-start" },
+  { text: "lg:col-span-4", media: "lg:col-span-8 lg:-mt-10", mediaLeft: false, align: "items-start", cover: "end" },
 ]
 
 function CaseStudy({ project, index }: { project: Project; index: number }) {
@@ -108,7 +114,14 @@ function CaseStudy({ project, index }: { project: Project; index: number }) {
 
         {/* Media column */}
         <div className={cn(comp.media, mediaLeft && "lg:order-1")}>
-          <BrowserFrame title={project.title} tagline={project.tagline} url={url} media={project.media} />
+          <BrowserFrame
+            title={project.title}
+            tagline={project.tagline}
+            badge={project.badge}
+            url={url}
+            cover={comp.cover}
+            media={project.media}
+          />
         </div>
       </article>
     </Reveal>

@@ -8,7 +8,7 @@ export function Tag({ className, children, ...props }: React.HTMLAttributes<HTML
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border border-border bg-transparent px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground",
+        "inline-flex items-center rounded-full border border-border bg-transparent px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground transition-colors duration-(--duration-hover) hover:border-foreground/25 hover:text-foreground",
         className
       )}
       {...props}

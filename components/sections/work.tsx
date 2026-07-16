@@ -14,8 +14,10 @@ const statusLabel = (p: Project) => (p.inProgress ? "in progress" : "shipped")
 function StoryBlock({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <h4 className="mb-2 font-mono text-[11px] text-muted-foreground">{label}</h4>
-      <p className="text-sm leading-relaxed text-muted-foreground">{children}</p>
+      <h4 className="mb-1.5 font-mono text-[11px] font-medium tracking-wide text-foreground/60">
+        {label}
+      </h4>
+      <p className="max-w-[46ch] text-sm leading-relaxed text-muted-foreground">{children}</p>
     </div>
   )
 }
@@ -76,7 +78,7 @@ function CaseStudy({ project, index }: { project: Project; index: number }) {
             </a>
           )}
 
-          <div className="mt-6 space-y-5">
+          <div className="mt-7 space-y-6">
             {project.problem && <StoryBlock label="the problem">{project.problem}</StoryBlock>}
             <StoryBlock label="what I built">{project.description}</StoryBlock>
             {project.learned && (
@@ -106,7 +108,7 @@ function CaseStudy({ project, index }: { project: Project; index: number }) {
 
         {/* Media column */}
         <div className={cn(comp.media, mediaLeft && "lg:order-1")}>
-          <BrowserFrame title={project.title} url={url} media={project.media} />
+          <BrowserFrame title={project.title} tagline={project.tagline} url={url} media={project.media} />
         </div>
       </article>
     </Reveal>

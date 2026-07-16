@@ -1,9 +1,13 @@
 "use client"
 
 import { useRef, useState } from "react"
+import { Megaphone, Shirt, Package, Briefcase, Store, Cpu, type LucideIcon } from "lucide-react"
 import type { Milestone } from "@/data/content"
 import { gsap, useIsomorphicLayoutEffect } from "@/lib/motion"
 import { cn } from "@/lib/utils"
+
+/* Icon per milestone, ordered like journey.milestones. Purely supportive. */
+const MILESTONE_ICONS: LucideIcon[] = [Megaphone, Shirt, Package, Briefcase, Store, Cpu]
 
 interface JourneyTimelineProps {
   milestones: Milestone[]
@@ -98,20 +102,21 @@ export function JourneyTimeline({ milestones, currently }: JourneyTimelineProps)
         <div ref={track} className="relative w-max">
           {/* The line rides with the track: hairline base + scrubbed accent fill */}
           <div
-            className="pointer-events-none absolute left-0 top-[7px] h-px w-full bg-border"
+            className="pointer-events-none absolute left-0 top-[6px] h-px w-full bg-border [mask-image:linear-gradient(90deg,black_92%,transparent)]"
             aria-hidden="true"
           />
           <div
             ref={progress}
-            className="pointer-events-none absolute left-0 top-[7px] h-px w-full origin-left scale-x-0 bg-accent"
+            className="pointer-events-none absolute left-0 top-[5.5px] h-[2px] w-full origin-left scale-x-0 rounded-full bg-accent"
             aria-hidden="true"
           />
-          <ol className="flex gap-24 pr-[24vw]">
+          <ol className="flex gap-28 pr-[22vw]">
             {milestones.map((m, i) => {
               const isActive = i === active
               const isPassed = i < active
+              const Icon = MILESTONE_ICONS[i % MILESTONE_ICONS.length]
               return (
-                <li key={m.title} className="w-72 shrink-0">
+                <li key={m.title} className="group/stop w-72 shrink-0">
                   <span
                     className={cn(
                       "relative z-10 mt-[1px] block size-[13px] rounded-full transition-all duration-(--duration-hover)",
@@ -119,51 +124,57 @@ export function JourneyTimeline({ milestones, currently }: JourneyTimelineProps)
                         ? "bg-accent shadow-[0_0_0_5px_oklch(0.52_0.21_285/0.15)]"
                         : isPassed
                           ? "bg-accent"
-                          : "border border-border bg-background"
+                          : "border border-border bg-background group-hover/stop:border-foreground/40"
                     )}
                     aria-hidden="true"
                   />
                   <p
                     className={cn(
-                      "mt-6 font-mono text-[11px] tracking-widest transition-colors duration-(--duration-hover)",
+                      "mt-6 flex items-center gap-2 font-mono text-[11px] tracking-widest transition-colors duration-(--duration-hover)",
                       isActive ? "text-accent" : "text-muted-foreground"
                     )}
                   >
+                    <Icon
+                      className={cn(
+                        "size-3.5 transition-colors duration-(--duration-hover)",
+                        isActive ? "text-accent" : "text-muted-foreground/70"
+                      )}
+                      aria-hidden="true"
+                    />
                     {m.year}
                   </p>
-                  <h4
+                  <h3
                     className={cn(
                       "mt-2 font-display font-semibold tracking-tight transition-all duration-(--duration-hover)",
-                      isActive ? "text-2xl text-foreground" : "text-xl text-muted-foreground"
+                      isActive
+                        ? "text-2xl text-foreground"
+                        : "text-xl text-muted-foreground group-hover/stop:text-foreground"
                     )}
                   >
                     {m.title}
-                  </h4>
-                  <p
-                    className={cn(
-                      "mt-2.5 max-w-[26ch] text-sm leading-relaxed transition-colors duration-(--duration-hover)",
-                      isActive ? "text-muted-foreground" : "text-muted-foreground/70"
-                    )}
-                  >
+                  </h3>
+                  <p className="mt-2.5 max-w-[26ch] text-sm leading-relaxed text-muted-foreground">
                     {m.description}
                   </p>
                 </li>
               )
             })}
 
-            {/* Epilogue: not an achievement, just a small honest note */}
+            {/* Epilogue: not an achievement, a notebook note (hence the tilt) */}
             <li className="w-72 shrink-0">
               <span className="status-dot relative z-10 mt-[3px] block" aria-hidden="true" />
-              <p className="mt-6 font-mono text-[11px] tracking-widest text-muted-foreground">
-                currently...
-              </p>
-              <ul className="mt-3 space-y-1.5">
-                {currently.map((line) => (
-                  <li key={line} className="font-mono text-sm text-muted-foreground">
-                    {line}
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-6 -rotate-1">
+                <p className="font-mono text-[11px] tracking-widest text-muted-foreground">
+                  currently...
+                </p>
+                <ul className="mt-3 space-y-1.5">
+                  {currently.map((line) => (
+                    <li key={line} className="font-mono text-sm text-muted-foreground">
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </li>
           </ol>
         </div>
@@ -178,9 +189,9 @@ export function JourneyTimeline({ milestones, currently }: JourneyTimelineProps)
               aria-hidden="true"
             />
             <p className="font-mono text-xs text-muted-foreground">{m.year}</p>
-            <h4 className="mt-1 font-display text-lg font-semibold tracking-tight text-foreground">
+            <h3 className="mt-1 font-display text-lg font-semibold tracking-tight text-foreground">
               {m.title}
-            </h4>
+            </h3>
             <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
               {m.description}
             </p>
@@ -188,14 +199,16 @@ export function JourneyTimeline({ milestones, currently }: JourneyTimelineProps)
         ))}
         <li className="relative pt-10">
           <span className="status-dot absolute -left-[29px] top-[46px]" aria-hidden="true" />
-          <p className="font-mono text-xs tracking-widest text-muted-foreground">currently...</p>
-          <ul className="mt-2 space-y-1">
-            {currently.map((line) => (
-              <li key={line} className="font-mono text-sm text-muted-foreground">
-                {line}
-              </li>
-            ))}
-          </ul>
+          <div className="-rotate-1">
+            <p className="font-mono text-xs tracking-widest text-muted-foreground">currently...</p>
+            <ul className="mt-2 space-y-1">
+              {currently.map((line) => (
+                <li key={line} className="font-mono text-sm text-muted-foreground">
+                  {line}
+                </li>
+              ))}
+            </ul>
+          </div>
         </li>
       </ol>
     </>

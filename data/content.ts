@@ -47,11 +47,17 @@ export const hero = {
   availability: "open to internships & founding-team roles",
 }
 
-/* Editorial introduction: one statement, one supporting paragraph. */
+/* Editorial introduction: kicker, statement, two short beats, signature.
+   Same facts as before, restructured for reading rhythm. */
 export const about = {
+  kicker: "in short",
   statement: "I build products for the quiet problems people carry every day.",
-  body:
-    "The method never changes: start from how someone actually behaves, then engineer around it. I ran small businesses before I wrote serious software, so product thinking and psychology came first and the code arrived to serve them. Most of what follows began as a hypothesis, shipped fast, measured honestly, and rebuilt without ceremony.",
+  body: [
+    "The method never changes: start from how someone actually behaves, then engineer around it.",
+    "I ran small businesses before I wrote serious software, so product thinking and psychology came first and the code arrived to serve them.",
+  ],
+  signature:
+    "Most of what follows began as a hypothesis, shipped fast, measured honestly, and rebuilt without ceremony.",
 }
 
 /* Two contrasting registers: a tight tool cluster vs. airy thinking. */
@@ -62,13 +68,7 @@ export const skills = {
   },
   thinkIn: {
     heading: "What I think in",
-    items: [
-      "Product strategy",
-      "User psychology",
-      "Design systems",
-      "Rapid iteration",
-      "Business thinking",
-    ],
+    items: ["Systems", "Products", "AI", "User behaviour", "Experiments"],
   },
 }
 
@@ -162,9 +162,10 @@ export const journey = {
   ] satisfies Milestone[],
   /* The playful final stop after the last milestone: a "currently..." note. */
   currently: [
-    "building random tools",
-    "studying psychology",
-    "finding patterns everywhere",
+    "building random tools.",
+    "reading obscure essays.",
+    "watching people use software.",
+    "thinking about behaviour.",
   ],
   closing: {
     quote:

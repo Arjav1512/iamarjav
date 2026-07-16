@@ -17,9 +17,7 @@ export function ArticlesSection() {
           {articles.map((article, i) => (
             <li
               key={article.slug}
-              className={
-                "group relative border-b border-border" + (i === 0 ? " border-t" : "")
-              }
+              className="group relative border-b border-border first:border-t"
             >
               <Link
                 href={`/articles/${article.slug}`}
@@ -39,11 +37,11 @@ export function ArticlesSection() {
                     {article.teaser}
                   </p>
                   <p className="mt-2.5 font-mono text-[11px] text-muted-foreground sm:hidden">
-                    {article.status === "draft" ? "draft" : "published"}
+                    {article.status}
                   </p>
                 </div>
                 <span className="hidden items-center gap-2 self-start pt-1.5 font-mono text-[11px] text-muted-foreground sm:flex">
-                  {article.status === "draft" ? "draft" : "published"}
+                  {article.status}
                   <ArrowUpRight
                     className="size-3.5 transition-transform duration-(--duration-hover) group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
                     aria-hidden="true"

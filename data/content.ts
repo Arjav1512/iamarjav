@@ -47,42 +47,27 @@ export const hero = {
   availability: "open to internships & founding-team roles",
 }
 
-/* Editorial introduction, straight after the hero. Not a biography. */
-export const about = [
-  "I'm the kind of builder who starts with a person, not a framework. Before I wrote serious software I ran small businesses, and it left a habit: understand who something is for, then make it.",
-  "I enjoy making tools that change behaviour: a journal that argues back, a chess coach that explains itself, an extension that shows you where your attention actually went.",
-  "I build because shipping is how I think. Every project here started as a question about people and became something you can click.",
-]
+/* Editorial introduction: one statement, one supporting paragraph. */
+export const about = {
+  statement: "I build products for the quiet problems people carry every day.",
+  body:
+    "The method never changes: start from how someone actually behaves, then engineer around it. I ran small businesses before I wrote serious software, so product thinking and psychology came first and the code arrived to serve them. Most of what follows began as a hypothesis, shipped fast, measured honestly, and rebuilt without ceremony.",
+}
 
-/* Two contrasting columns: tools vs. thinking. */
+/* Two contrasting registers: a tight tool cluster vs. airy thinking. */
 export const skills = {
   buildWith: {
     heading: "What I build with",
-    items: [
-      "Python",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Tailwind CSS",
-      "Supabase",
-      "Postgres",
-      "GSAP",
-      "AI APIs",
-      "Scikit-learn",
-      "Pandas",
-    ],
+    items: ["Python", "TypeScript", "React", "Next.js", "Supabase"],
   },
   thinkIn: {
     heading: "What I think in",
     items: [
-      "Product hypotheses",
-      "User journeys",
-      "Rapid iteration",
-      "System design",
-      "Design thinking",
-      "Behaviour design",
-      "Experiments",
       "Product strategy",
+      "User psychology",
+      "Design systems",
+      "Rapid iteration",
+      "Business thinking",
     ],
   },
 }
@@ -91,14 +76,6 @@ export const experiments = {
   intro:
     "Not everything deserves a case study. Some things were built to explore an idea, learn a tool, or answer a question that would not leave me alone. They still shipped.",
 }
-
-/* Oversized editorial statements. */
-export const writingStatements = [
-  "Technology should improve behaviour.",
-  "Products begin with empathy.",
-  "Speed matters.",
-  "Curiosity compounds.",
-]
 
 export type Article = {
   slug: string
@@ -183,6 +160,12 @@ export const journey = {
       description: "Leading technology at Wroob.",
     },
   ] satisfies Milestone[],
+  /* The playful final stop after the last milestone: a "currently..." note. */
+  currently: [
+    "building random tools",
+    "studying psychology",
+    "finding patterns everywhere",
+  ],
   closing: {
     quote:
       "Building is genuinely the only thing I'm good at. Everything else is just noise I'm trying to tune out.",

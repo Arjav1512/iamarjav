@@ -21,21 +21,31 @@ function StoryBlock({ label, children }: { label: string; children: React.ReactN
 }
 
 /*
- * Featured case study. Text and media split an editorial 12-col grid and
- * alternate sides per project; the first project (ChessMate) carries the
- * largest typographic emphasis. Media frames are layout-final placeholders
- * until real screenshots land (content-only swap).
+ * Featured case study. Every project occupies a different composition:
+ * sides alternate, but column spans, vertical offsets, and alignment vary
+ * per index so the eye zig-zags instead of scrolling a repeated card.
+ * Media frames are layout-final placeholders until real screenshots land.
  */
+const COMPOSITIONS = [
+  // 1 · ChessMate: text left, large media right, media dips below the text
+  { text: "lg:col-span-5", media: "lg:col-span-7 lg:mt-14", mediaLeft: false, align: "items-start" },
+  // 2 · Mirror: media left riding high, text right vertically centered
+  { text: "lg:col-span-6 lg:self-center lg:pl-6", media: "lg:col-span-6 lg:-mt-6", mediaLeft: true, align: "items-start" },
+  // 3 · Torch: narrow text left, widest media right rising above the baseline
+  { text: "lg:col-span-4", media: "lg:col-span-8 lg:-mt-10", mediaLeft: false, align: "items-start" },
+]
+
 function CaseStudy({ project, index }: { project: Project; index: number }) {
   const url = liveUrl(project)
-  const mediaLeft = index % 2 === 1
+  const comp = COMPOSITIONS[index % COMPOSITIONS.length]
+  const { mediaLeft } = comp
   const isLead = index === 0
 
   return (
     <Reveal index={Math.min(index, 2)}>
-      <article className="group grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
+      <article className={cn("group grid gap-8 lg:grid-cols-12 lg:gap-12", comp.align)}>
         {/* Text column */}
-        <div className={cn("lg:col-span-5", mediaLeft && "lg:order-2")}>
+        <div className={cn(comp.text, mediaLeft && "lg:order-2")}>
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 lg:block">
             <h3
               className={cn(
@@ -95,7 +105,7 @@ function CaseStudy({ project, index }: { project: Project; index: number }) {
         </div>
 
         {/* Media column */}
-        <div className={cn("lg:col-span-7", mediaLeft && "lg:order-1")}>
+        <div className={cn(comp.media, mediaLeft && "lg:order-1")}>
           <BrowserFrame title={project.title} url={url} media={project.media} />
         </div>
       </article>
@@ -108,7 +118,7 @@ export function WorkSection() {
 
   return (
     <Section id="projects" index={1} title="Featured Work">
-      <div className="flex flex-col gap-24 lg:gap-32">
+      <div className="flex flex-col gap-16 lg:gap-20">
         {featured.map((project, i) => (
           <CaseStudy key={project.title} project={project} index={i} />
         ))}

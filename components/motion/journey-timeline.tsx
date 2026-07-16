@@ -2,23 +2,31 @@
 
 import { useRef, useState } from "react"
 import type { Milestone } from "@/data/content"
-import { gsap, MOTION, useIsomorphicLayoutEffect } from "@/lib/motion"
+import { gsap, useIsomorphicLayoutEffect } from "@/lib/motion"
 import { cn } from "@/lib/utils"
+
+interface JourneyTimelineProps {
+  milestones: Milestone[]
+  /** The playful epilogue after the last milestone: "currently..." lines. */
+  currently: string[]
+}
 
 /*
  * Horizontal journey. On desktop with motion allowed, the section pins and
  * vertical scroll pans the track horizontally (canonical pin/scrub: start
- * "top top", end = horizontal distance, scrub 1). A hairline progress line
- * fills as you travel and the milestone nearest the playhead activates.
+ * "top top", end = horizontal distance, scrub 1). The hairline and its
+ * accent progress fill live inside the track, so the line travels with the
+ * journey; the milestone nearest the playhead activates (larger ink title,
+ * ringed accent dot; passed dots stay filled).
  *
- * Fallbacks, no hijack anywhere else: reduced-motion or no-JS desktop gets
- * a plain horizontally scrollable track (overflow-x-auto is the default and
- * is only locked to hidden while the pin drives it); below lg the timeline
- * renders as a vertical list. gsap.matchMedia reverts everything cleanly.
+ * Fallbacks, no hijack anywhere else: reduced-motion / no-JS desktop keeps
+ * a keyboard-focusable horizontally scrollable region (overflow locks to
+ * hidden only while the pin drives it); below lg the timeline renders as a
+ * vertical list. gsap.matchMedia reverts everything cleanly.
  */
-export function JourneyTimeline({ milestones }: { milestones: Milestone[] }) {
+export function JourneyTimeline({ milestones, currently }: JourneyTimelineProps) {
   const wrap = useRef<HTMLDivElement>(null)
-  const track = useRef<HTMLOListElement>(null)
+  const track = useRef<HTMLDivElement>(null)
   const progress = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
 
@@ -79,43 +87,84 @@ export function JourneyTimeline({ milestones }: { milestones: Milestone[] }) {
 
   return (
     <>
-      {/* Desktop: pinned horizontal pan (scrollable region when unpinned) */}
+      {/* Desktop: pinned horizontal pan (keyboard-scrollable region when unpinned) */}
       <div
         ref={wrap}
+        role="region"
+        aria-label="Journey milestones"
+        tabIndex={0}
         className="relative hidden overflow-x-auto lg:flex lg:min-h-[100dvh] lg:flex-col lg:justify-center"
       >
-        <div className="relative">
-          {/* Track line + scrubbed progress overlay */}
-          <div className="pointer-events-none absolute left-0 top-[7px] h-px w-full bg-border" aria-hidden="true" />
+        <div ref={track} className="relative w-max">
+          {/* The line rides with the track: hairline base + scrubbed accent fill */}
+          <div
+            className="pointer-events-none absolute left-0 top-[7px] h-px w-full bg-border"
+            aria-hidden="true"
+          />
           <div
             ref={progress}
             className="pointer-events-none absolute left-0 top-[7px] h-px w-full origin-left scale-x-0 bg-accent"
             aria-hidden="true"
           />
-          <ol ref={track} className="flex w-max gap-20 pr-[30vw]">
-            {milestones.map((m, i) => (
-              <li key={m.title} className="w-72 shrink-0">
-                <span
-                  className={cn(
-                    "relative z-10 block size-[15px] rounded-full border-2 border-background transition-colors duration-(--duration-hover)",
-                    i <= active ? "bg-accent" : "bg-border"
-                  )}
-                  aria-hidden="true"
-                />
-                <p className="mt-5 font-mono text-xs text-muted-foreground">{m.year}</p>
-                <h4
-                  className={cn(
-                    "mt-1.5 font-display text-xl font-semibold tracking-tight transition-colors duration-(--duration-hover)",
-                    i === active ? "text-foreground" : "text-muted-foreground"
-                  )}
-                >
-                  {m.title}
-                </h4>
-                <p className="mt-2 max-w-[26ch] text-sm leading-relaxed text-muted-foreground">
-                  {m.description}
-                </p>
-              </li>
-            ))}
+          <ol className="flex gap-24 pr-[24vw]">
+            {milestones.map((m, i) => {
+              const isActive = i === active
+              const isPassed = i < active
+              return (
+                <li key={m.title} className="w-72 shrink-0">
+                  <span
+                    className={cn(
+                      "relative z-10 mt-[1px] block size-[13px] rounded-full transition-all duration-(--duration-hover)",
+                      isActive
+                        ? "bg-accent shadow-[0_0_0_5px_oklch(0.52_0.21_285/0.15)]"
+                        : isPassed
+                          ? "bg-accent"
+                          : "border border-border bg-background"
+                    )}
+                    aria-hidden="true"
+                  />
+                  <p
+                    className={cn(
+                      "mt-6 font-mono text-[11px] tracking-widest transition-colors duration-(--duration-hover)",
+                      isActive ? "text-accent" : "text-muted-foreground"
+                    )}
+                  >
+                    {m.year}
+                  </p>
+                  <h4
+                    className={cn(
+                      "mt-2 font-display font-semibold tracking-tight transition-all duration-(--duration-hover)",
+                      isActive ? "text-2xl text-foreground" : "text-xl text-muted-foreground"
+                    )}
+                  >
+                    {m.title}
+                  </h4>
+                  <p
+                    className={cn(
+                      "mt-2.5 max-w-[26ch] text-sm leading-relaxed transition-colors duration-(--duration-hover)",
+                      isActive ? "text-muted-foreground" : "text-muted-foreground/70"
+                    )}
+                  >
+                    {m.description}
+                  </p>
+                </li>
+              )
+            })}
+
+            {/* Epilogue: not an achievement, just a small honest note */}
+            <li className="w-72 shrink-0">
+              <span className="status-dot relative z-10 mt-[3px] block" aria-hidden="true" />
+              <p className="mt-6 font-mono text-[11px] tracking-widest text-muted-foreground">
+                currently...
+              </p>
+              <ul className="mt-3 space-y-1.5">
+                {currently.map((line) => (
+                  <li key={line} className="font-mono text-sm text-muted-foreground">
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </li>
           </ol>
         </div>
       </div>
@@ -137,6 +186,17 @@ export function JourneyTimeline({ milestones }: { milestones: Milestone[] }) {
             </p>
           </li>
         ))}
+        <li className="relative pt-10">
+          <span className="status-dot absolute -left-[29px] top-[46px]" aria-hidden="true" />
+          <p className="font-mono text-xs tracking-widest text-muted-foreground">currently...</p>
+          <ul className="mt-2 space-y-1">
+            {currently.map((line) => (
+              <li key={line} className="font-mono text-sm text-muted-foreground">
+                {line}
+              </li>
+            ))}
+          </ul>
+        </li>
       </ol>
     </>
   )

@@ -13,7 +13,7 @@ export function JourneySection() {
     <Section id="journey" index={3} title="Journey" aliasIds={["experience"]}>
       <JourneyTimeline milestones={journey.milestones} currently={journey.currently} />
 
-      <Reveal className="mt-20 border-t border-border pt-10 lg:mt-24 lg:pt-12">
+      <Reveal className="mt-14 border-t border-border pt-10 lg:mt-16 lg:pt-12">
         <blockquote className="max-w-2xl">
           <p className="font-display text-xl font-medium leading-snug tracking-tight text-foreground sm:text-2xl">
             &ldquo;{journey.closing.quote}&rdquo;

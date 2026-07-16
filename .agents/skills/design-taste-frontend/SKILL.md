@@ -986,6 +986,8 @@ The sections below are vendored reference content. They give the agent real inst
 
 ## Appendix A - Install Commands per Design System
 
+> These commands install packages and write project files. Treat them as **proposals**: surface the exact command to the user and get explicit approval before running any of them.
+
 ```bash
 # Material Web (Material 3)
 npm install @material/web

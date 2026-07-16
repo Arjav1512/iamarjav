@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next"
-
-const SITE_URL = "https://iamarjav.me"
+import { siteMeta } from "@/data/content"
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // No lastModified: without a maintained content-update timestamp, emitting
+  // the generation time would falsely claim a change on every deploy.
   return [
     {
-      url: SITE_URL,
-      lastModified: new Date(),
+      url: siteMeta.url,
       changeFrequency: "monthly",
       priority: 1,
     },

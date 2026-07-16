@@ -14,6 +14,28 @@ export const siteConfig = {
   resumeUrl: "#",
 }
 
+/* SEO / metadata content — single source for titles, description, and the
+   structured-data fields, consumed by app/layout.tsx, sitemap, and robots. */
+export const siteMeta = {
+  url: "https://iamarjav.me",
+  title: "Arjav Jain, AI & product builder",
+  description:
+    "CS/AI student who builds and ships real products, from an AI journaling app that catches cognitive biases to a chess-coaching platform. Open to internships and founding-team roles.",
+  jobTitle: "Full-stack & AI product builder",
+  keywords: [
+    "Arjav Jain",
+    "product builder",
+    "AI engineer",
+    "full stack developer",
+    "founding engineer",
+    "Bennett University",
+    "portfolio",
+  ],
+  university: "Bennett University",
+  addressLocality: "Greater Noida",
+  addressCountry: "IN",
+}
+
 export const hero = {
   greeting: "hey, i'm arjav jain",
   headlineLines: ["I build things,", "break things,", "and ship a lot."],
@@ -25,72 +47,125 @@ export const hero = {
   availability: "open to internships & founding-team roles",
 }
 
-export type JourneyChapter = {
-  /** Mono kicker above the headline, e.g. "2024 · first ventures". */
-  stage: string
-  headline: string
-  narrative: string
-  /** Verifiable facts backing the narrative — roles, orgs, dates, artifacts. */
-  facts: string[]
-  /** "What changed" — the takeaway of the chapter. */
-  outcome?: string
+/* Editorial introduction: one statement, one supporting paragraph. */
+export const about = {
+  statement: "I build products for the quiet problems people carry every day.",
+  body:
+    "The method never changes: start from how someone actually behaves, then engineer around it. I ran small businesses before I wrote serious software, so product thinking and psychology came first and the code arrived to serve them. Most of what follows began as a hypothesis, shipped fast, measured honestly, and rebuilt without ceremony.",
+}
+
+/* Two contrasting registers: a tight tool cluster vs. airy thinking. */
+export const skills = {
+  buildWith: {
+    heading: "What I build with",
+    items: ["Python", "TypeScript", "React", "Next.js", "Supabase"],
+  },
+  thinkIn: {
+    heading: "What I think in",
+    items: [
+      "Product strategy",
+      "User psychology",
+      "Design systems",
+      "Rapid iteration",
+      "Business thinking",
+    ],
+  },
+}
+
+export const experiments = {
+  intro:
+    "Not everything deserves a case study. Some things were built to explore an idea, learn a tool, or answer a question that would not leave me alone. They still shipped.",
+}
+
+export type Article = {
+  slug: string
+  title: string
+  teaser: string
+  /* Placeholder until the piece is written; article pages stay noindex while draft. */
+  status: "draft" | "published"
+}
+
+export const articles: Article[] = [
+  {
+    slug: "why-i-build-a-tool-i-am-the-only-user-of",
+    title: "Why I Build a Tool I Am the Only User Of",
+    teaser:
+      "Mirror has one guaranteed user: me. That turns out to be the best product feedback loop I know.",
+    status: "draft",
+  },
+  {
+    slug: "the-honest-chess-problem",
+    title: "The Honest Chess Problem",
+    teaser:
+      "Chess engines are honest to a fault. Making that honesty useful is a design problem, not an engine problem.",
+    status: "draft",
+  },
+  {
+    slug: "technology-should-shape-better-behavior",
+    title: "Technology Should Shape Better Behavior",
+    teaser: "The best products do not just serve behaviour. They bend it somewhere better.",
+    status: "draft",
+  },
+  {
+    slug: "let-the-robots-solve-utility",
+    title: "Let the Robots Solve Utility",
+    teaser: "Utility is a solved problem for machines. The interesting work starts after.",
+    status: "draft",
+  },
+]
+
+/* Journey: a horizontal timeline of milestones (2024 -> now), replacing the
+   chapter narrative. Facts are user-supplied; [review] marks items awaiting
+   confirmation of dates/details. */
+export type Milestone = {
+  year: string
+  title: string
+  description: string
 }
 
 export const journey = {
-  lede: "The résumé version says CS student. The honest version is four chapters about figuring out what building actually means.",
-  chapters: [
+  milestones: [
     {
-      stage: "2024 · first ventures",
-      headline: "Products came before code.",
-      narrative:
-        "I didn't start with a text editor. I started with customers. DigiArc was a digital marketing agency for small businesses: brand identities, websites, marketplace listings. Cult Notice was a Gen Z clothing brand built from scratch. Neither was a tech startup, and that turned out to be the point: before I ever shipped software, I learned that products live or die on whether you understand the people they're for.",
-      facts: [
-        "Co-founder · DigiArc, digital marketing agency for SMBs · Jan-Mar 2024",
-        "Co-founder · Cult Notice, Gen Z clothing brand · Dec 2024-Apr 2025",
-      ],
-      outcome: "What changed: building became about people, not tools.",
+      year: "2024",
+      title: "Marketing agency",
+      description:
+        "Co-founded DigiArc: brand identity, websites and marketplace listings for small businesses.",
     },
     {
-      // [review: add CS50 / certification completion dates when confirmed]
-      stage: "foundations · CS50",
-      headline: "Then I learned to ship software.",
-      narrative:
-        "Harvard's CS50 and CS50P gave me the fundamentals; the final project made them real. Daily Digital Diary, a Chrome extension that turns your own browsing history into mindful insight, was the first thing I built that strangers could install. IBM's Enterprise Design Thinking certification pulled the two threads together: engineering on one side, how humans actually behave on the other.",
-      facts: [
-        "CS50: Introduction to Computer Science",
-        "CS50: Introduction to Programming with Python",
-        "IBM Enterprise Design Thinking Co-Creator",
-        "Shipped: Daily Digital Diary, CS50 final project",
-      ],
-      outcome: "What changed: from selling products to building them.",
+      year: "2024",
+      title: "Clothing brand",
+      description: "Launched Cult Notice, a Gen Z clothing label built from scratch.",
     },
     {
-      stage: "2025 · the deep end",
-      headline: "Formal training, real stakes.",
-      narrative:
-        "A B.Tech in Computer Science (AI/ML) at Bennett University made the interest official. The same stretch brought the GeeksforGeeks junior core, a Smart India Hackathon build for waste management, and an internship at ElevenX working on leads, outreach and growth. Building was never the hard part; this is where I started learning distribution, the part most engineers skip.",
-      facts: [
-        "B.Tech CSE (AI/ML) · Bennett University · Aug 2025-2029",
-        "Intern · ElevenX, sales & marketing · Oct 2025-present",
-        "Tech member (junior core) · GFG Club, Bennett University · 2025-present",
-        "Operations & management · Makana Express, import-export · ongoing",
-        "Built: SwachSarthi @ Smart India Hackathon",
-      ],
-      outcome: "What changed: I started thinking like a founder again, with real engineering underneath.",
+      // [review: confirm year and details of the seasoning unit]
+      year: "2025",
+      title: "Seasoning unit",
+      description: "Set up a small seasoning production unit.",
     },
     {
-      stage: "now · shipping",
-      headline: "Ship, learn, repeat.",
-      narrative:
-        "Mirror is live in production. ChessMate is open source. Torch, design-to-docs automation, is on the bench right now. The through-line hasn't changed since the agency days: understand people first, engineer second. I'm looking for the rooms where that instinct compounds: internships and founding teams building products that actually ship.",
-      facts: [
-        "Mirror · live at usemirror.dev",
-        "ChessMate · open source",
-        "Torch · in progress",
-        "Open to internships & founding-team roles",
-      ],
+      year: "2025",
+      title: "ElevenX internship",
+      description: "Joined the sales and marketing team: leads, outreach and growth.",
     },
-  ] satisfies JourneyChapter[],
+    {
+      // [review: role upgraded from "operations & management"; confirm title and spelling Makhana/Makana]
+      year: "2025",
+      title: "Makhana Express",
+      description: "CMO & CTO for the import-export business.",
+    },
+    {
+      // [review: new role, add company details]
+      year: "now",
+      title: "CTO at Wroob",
+      description: "Leading technology at Wroob.",
+    },
+  ] satisfies Milestone[],
+  /* The playful final stop after the last milestone: a "currently..." note. */
+  currently: [
+    "building random tools",
+    "studying psychology",
+    "finding patterns everywhere",
+  ],
   closing: {
     quote:
       "Building is genuinely the only thing I'm good at. Everything else is just noise I'm trying to tune out.",
@@ -108,6 +183,8 @@ export type Project = {
   problem?: string
   /** Short verifiable fact shown next to the status, e.g. "live in production". */
   context?: string
+  /** Case-study reflection: what building it taught (featured only). */
+  learned?: string
   tech: string[]
   github: string
   demo: string
@@ -119,6 +196,21 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "ChessMate",
+    tagline: "Chess improvement with an engine that explains, not just evaluates.",
+    problem:
+      "Chess engines tell you the best move, not why yours was worse. Evaluation without explanation makes you dependent on the engine instead of better at the game.",
+    description:
+      "A web-based improvement platform that pairs Stockfish evaluation with an AI mentor chat: analyse your games, understand your mistakes, and train the weaknesses it finds.",
+    context: "live at chess-mate.app",
+    tech: ["React", "TypeScript", "Supabase", "Stockfish", "Tailwind CSS"],
+    github: "https://github.com/Arjav1512/ChessMate-Tool",
+    demo: "https://chess-mate.app",
+    learned:
+      "The engine was the easy part. Turning evaluation into explanation, something a club player can act on, is where the product actually lives.",
+    featured: true,
+  },
+  {
     title: "Mirror",
     tagline: "An AI journal that catches your cognitive biases before you do.",
     problem:
@@ -129,19 +221,23 @@ export const projects: Project[] = [
     tech: ["React", "Supabase", "Tailwind CSS", "Sentiment Analysis", "Edge Functions"],
     github: "https://github.com/Arjav1512/Mirror",
     demo: "https://usemirror.dev",
+    learned:
+      "Building the bias detector taught me more about my own patterns than the journal did. Products that watch behaviour have to earn trust before they earn attention.",
     featured: true,
   },
   {
-    title: "ChessMate",
-    tagline: "Chess improvement with an engine that explains, not just evaluates.",
+    title: "Torch",
+    tagline: "Watches Figma files and writes developer-ready docs automatically.",
     problem:
-      "Chess engines tell you the best move, not why yours was worse. Evaluation without explanation makes you dependent on the engine instead of better at the game.",
+      "Design changes travel to developers through meetings, screenshots and guesswork. The information already exists in Figma; the handoff is where it gets lost.",
     description:
-      "A web-based improvement platform that pairs Stockfish evaluation with an AI mentor chat: analyse your games, understand your mistakes, and train the weaknesses it finds.",
-    context: "open source",
-    tech: ["React", "TypeScript", "Supabase", "Stockfish", "Tailwind CSS"],
-    github: "https://github.com/Arjav1512/ChessMate-Tool",
+      "Monitors your Figma files, detects changes and generates developer-ready documentation automatically. No meetings, no manual spec writing, no back-and-forth. Currently in progress.",
+    tech: ["TypeScript", "Figma API", "Automation"],
+    github: "#",
     demo: "#",
+    learned:
+      "Building on someone else's platform means designing inside their constraints. Half the work is understanding the Figma file model, not writing features.",
+    inProgress: true,
     featured: true,
   },
   {
@@ -155,17 +251,6 @@ export const projects: Project[] = [
     tech: ["JavaScript", "Chrome APIs", "Gemini API", "HTML/CSS"],
     github: "https://github.com/Arjav1512/CS50-FinalProject",
     demo: "https://youtu.be/ZR7ZmUQUYdw",
-    featured: true,
-  },
-  {
-    title: "Torch",
-    tagline: "Watches Figma files and writes developer-ready docs automatically.",
-    description:
-      "Monitors your Figma files, detects changes and generates developer-ready documentation automatically. No meetings, no manual spec writing, no back-and-forth. Currently in progress.",
-    tech: ["TypeScript", "Figma API", "Automation"],
-    github: "#",
-    demo: "#",
-    inProgress: true,
   },
   {
     title: "SwachSarthi",

@@ -63,11 +63,11 @@ export const about = {
 /* Two contrasting registers: a tight tool cluster vs. airy thinking. */
 export const skills = {
   buildWith: {
-    heading: "What I build with",
+    heading: "what I build with",
     items: ["Python", "TypeScript", "React", "Next.js", "Supabase"],
   },
   thinkIn: {
-    heading: "What I think in",
+    heading: "what I think in",
     items: ["Systems", "Products", "AI", "User behaviour", "Experiments"],
   },
 }

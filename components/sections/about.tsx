@@ -14,7 +14,7 @@ export function AboutSection() {
     >
       <Reveal>
         <p className="font-mono text-[11px] text-muted-foreground">{about.kicker}</p>
-        <p className="mt-5 max-w-[24ch] font-display text-[clamp(1.75rem,4.5vw,3rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-foreground">
+        <p className="mt-5 max-w-[24ch] text-balance font-display text-[clamp(1.75rem,4.5vw,3rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-foreground">
           {about.statement}
         </p>
       </Reveal>

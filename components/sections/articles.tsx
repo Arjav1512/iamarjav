@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { articles } from "@/data/content"
 import { Section } from "@/components/primitives/section"
 import { Reveal } from "@/components/primitives/reveal"
@@ -42,8 +42,9 @@ export function ArticlesSection() {
                 </div>
                 <span className="hidden items-center gap-2 self-start pt-1.5 font-mono text-[11px] text-muted-foreground sm:flex">
                   {article.status}
-                  <ArrowUpRight
-                    className="size-3.5 transition-transform duration-(--duration-hover) group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
+                  {/* Internal route: a level arrow, not the external ↗ used for outbound links */}
+                  <ArrowRight
+                    className="size-3.5 transition-transform duration-(--duration-hover) group-hover:translate-x-0.5 motion-reduce:transition-none"
                     aria-hidden="true"
                   />
                 </span>

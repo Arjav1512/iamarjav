@@ -37,8 +37,8 @@ const COMPOSITIONS: {
 }[] = [
   // 1 · ChessMate: text left, large media right, media dips below the text
   { text: "lg:col-span-5", media: "lg:col-span-7 lg:mt-14", mediaLeft: false, align: "items-start", cover: "center" },
-  // 2 · Mirror: media left riding high, text right vertically centered
-  { text: "lg:col-span-6 lg:self-center lg:pl-6", media: "lg:col-span-6 lg:-mt-6", mediaLeft: true, align: "items-start", cover: "start" },
+  // 2 · Mirror: media left floating centered against the longer text column
+  { text: "lg:col-span-6 lg:pl-6", media: "lg:col-span-6 lg:self-center", mediaLeft: true, align: "items-start", cover: "start" },
   // 3 · Torch: narrow text left, widest media right rising above the baseline
   { text: "lg:col-span-4", media: "lg:col-span-8 lg:-mt-10", mediaLeft: false, align: "items-start", cover: "end" },
 ]

@@ -39,11 +39,12 @@ export const siteMeta = {
 export const hero = {
   greeting: "hey, i'm arjav jain",
   headlineLines: ["I build things,", "break things,", "and ship a lot."],
-  status: [
-    "now building Torch, design-to-docs automation",
-    "intern @ ElevenX",
-    "CS/AI @ Bennett '29",
-  ],
+  /* One coherent snapshot, not a label pile: what is being built right now,
+     then the quieter context line. Availability lives in the closing only. */
+  status: {
+    now: "building Torch, automation that writes dev docs from Figma changes",
+    context: "intern at ElevenX · CS/AI at Bennett '29",
+  },
   availability: "open to internships & founding-team roles",
 }
 
@@ -124,6 +125,8 @@ export type Milestone = {
 }
 
 export const journey = {
+  /* One framing line for the timeline; both endpoints are real milestones. */
+  intro: "six stops: from first venture to first CTO seat.",
   milestones: [
     {
       year: "2024",

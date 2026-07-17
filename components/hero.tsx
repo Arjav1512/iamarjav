@@ -30,13 +30,13 @@ export function Hero() {
             ))}
           </h1>
 
-          <div data-hero className="mt-10 space-y-2.5">
+          <div data-hero className="mt-10 space-y-2">
             <p className="font-mono text-xs leading-relaxed text-muted-foreground sm:text-sm">
               <span className="status-dot mr-2.5" aria-hidden="true" />
-              {hero.status.join(" · ")}
+              {hero.status.now}
             </p>
             <p className="pl-[18px] font-mono text-xs text-muted-foreground">
-              {hero.availability}
+              {hero.status.context}
             </p>
           </div>
 

@@ -11,6 +11,8 @@ const MILESTONE_ICONS: LucideIcon[] = [Megaphone, Shirt, Package, Briefcase, Sto
 
 interface JourneyTimelineProps {
   milestones: Milestone[]
+  /** One framing line shown before the milestones on every breakpoint. */
+  intro: string
   /** The playful epilogue after the last milestone: "currently..." lines. */
   currently: string[]
 }
@@ -28,7 +30,7 @@ interface JourneyTimelineProps {
  * hidden only while the pin drives it); below lg the timeline renders as a
  * vertical list. gsap.matchMedia reverts everything cleanly.
  */
-export function JourneyTimeline({ milestones, currently }: JourneyTimelineProps) {
+export function JourneyTimeline({ milestones, intro, currently }: JourneyTimelineProps) {
   const wrap = useRef<HTMLDivElement>(null)
   const track = useRef<HTMLDivElement>(null)
   const progress = useRef<HTMLDivElement>(null)
@@ -99,6 +101,10 @@ export function JourneyTimeline({ milestones, currently }: JourneyTimelineProps)
         tabIndex={0}
         className="relative hidden overflow-x-auto lg:flex lg:min-h-[100dvh] lg:flex-col lg:justify-center"
       >
+        {/* Framing line: stays put while the track pans behind it */}
+        <p className="mb-14 font-mono text-[11px] tracking-wide text-muted-foreground">
+          {intro}
+        </p>
         <div ref={track} className="relative w-max">
           {/* The line rides with the track: hairline base + scrubbed accent fill */}
           <div
@@ -110,7 +116,7 @@ export function JourneyTimeline({ milestones, currently }: JourneyTimelineProps)
             className="pointer-events-none absolute left-0 top-[5.5px] h-[2px] w-full origin-left scale-x-0 rounded-full bg-accent"
             aria-hidden="true"
           />
-          <ol className="flex gap-28 pr-[22vw]">
+          <ol className="flex gap-20 pr-[10vw]">
             {milestones.map((m, i) => {
               const isActive = i === active
               const isPassed = i < active
@@ -180,7 +186,10 @@ export function JourneyTimeline({ milestones, currently }: JourneyTimelineProps)
         </div>
       </div>
 
-      {/* Mobile: vertical list along a hairline */}
+      {/* Mobile: framing line, then a vertical list along a hairline */}
+      <p className="mb-8 font-mono text-[11px] tracking-wide text-muted-foreground lg:hidden">
+        {intro}
+      </p>
       <ol className="border-l border-border pl-6 lg:hidden">
         {milestones.map((m) => (
           <li key={m.title} className="relative pb-10 last:pb-0">

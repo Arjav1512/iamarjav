@@ -11,7 +11,11 @@ import { JourneyTimeline } from "@/components/motion/journey-timeline"
 export function JourneySection() {
   return (
     <Section id="journey" index={3} title="Journey" aliasIds={["experience"]}>
-      <JourneyTimeline milestones={journey.milestones} currently={journey.currently} />
+      <JourneyTimeline
+        milestones={journey.milestones}
+        intro={journey.intro}
+        currently={journey.currently}
+      />
 
       <Reveal className="mt-14 border-t border-border pt-10 lg:mt-16 lg:pt-12">
         <blockquote className="max-w-2xl">

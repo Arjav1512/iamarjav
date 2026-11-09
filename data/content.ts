@@ -82,24 +82,27 @@ export type Article = {
   slug: string
   title: string
   teaser: string
-  /* Placeholder until the piece is written; article pages stay noindex while draft. */
+  /*
+   * Placeholder until the piece is written; article pages stay noindex while
+   * draft. A published article's body lives in content/articles/<slug>.md.
+   */
   status: "draft" | "published"
 }
 
 export const articles: Article[] = [
   {
-    slug: "why-i-build-a-tool-i-am-the-only-user-of",
-    title: "Why I Build a Tool I Am the Only User Of",
+    slug: "i-dont-write-99-percent-of-my-code",
+    title: "I Don't Write 99% of My Code",
     teaser:
-      "Mirror has one guaranteed user: me. That turns out to be the best product feedback loop I know.",
-    status: "draft",
+      "AI writes or debugs almost all of my code. I'd rather say that myself than have someone find it out.",
+    status: "published",
   },
   {
     slug: "the-honest-chess-problem",
     title: "The Honest Chess Problem",
     teaser:
       "Chess engines are honest to a fault. Making that honesty useful is a design problem, not an engine problem.",
-    status: "draft",
+    status: "published",
   },
   {
     slug: "technology-should-shape-better-behavior",

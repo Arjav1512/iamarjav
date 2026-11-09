@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { siteMeta } from "@/data/content"
+import { articles, siteMeta } from "@/data/content"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // No lastModified: without a maintained content-update timestamp, emitting
@@ -10,5 +10,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
+    // Published essays only; drafts are noindex placeholders.
+    ...articles
+      .filter((article) => article.status === "published")
+      .map((article) => ({
+        url: `${siteMeta.url}/articles/${article.slug}`,
+        changeFrequency: "yearly" as const,
+        priority: 0.7,
+      })),
   ]
 }

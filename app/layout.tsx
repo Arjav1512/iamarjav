@@ -92,8 +92,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/*
+       * Browser extensions (e.g. ColorZilla's cz-shortcut-listen, Grammarly)
+       * add attributes to <body> before React hydrates. This only ignores
+       * attribute mismatches on <body> itself; children are still checked.
+       */}
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} font-sans antialiased`}
+        suppressHydrationWarning
       >
         {children}
         <script

@@ -17,7 +17,7 @@ export const siteConfig = {
 /* SEO / metadata content — single source for titles, description, and the
    structured-data fields, consumed by app/layout.tsx, sitemap, and robots. */
 export const siteMeta = {
-  url: "https://iamarjav.me",
+  url: "https://www.iamarjav.me",
   title: "Arjav Jain, AI & product builder",
   description:
     "CS/AI student who builds and ships real products, from an AI journaling app that catches cognitive biases to a chess-coaching platform. Open to internships and founding-team roles.",

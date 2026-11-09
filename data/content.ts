@@ -17,7 +17,7 @@ export const siteConfig = {
 /* SEO / metadata content — single source for titles, description, and the
    structured-data fields, consumed by app/layout.tsx, sitemap, and robots. */
 export const siteMeta = {
-  url: "https://iamarjav.me",
+  url: "https://www.iamarjav.me",
   title: "Arjav Jain, AI & product builder",
   description:
     "CS/AI student who builds and ships real products, from an AI journaling app that catches cognitive biases to a chess-coaching platform. Open to internships and founding-team roles.",
@@ -82,24 +82,27 @@ export type Article = {
   slug: string
   title: string
   teaser: string
-  /* Placeholder until the piece is written; article pages stay noindex while draft. */
+  /*
+   * Placeholder until the piece is written; article pages stay noindex while
+   * draft. A published article's body lives in content/articles/<slug>.md.
+   */
   status: "draft" | "published"
 }
 
 export const articles: Article[] = [
   {
-    slug: "why-i-build-a-tool-i-am-the-only-user-of",
-    title: "Why I Build a Tool I Am the Only User Of",
+    slug: "i-dont-write-99-percent-of-my-code",
+    title: "I Don't Write 99% of My Code",
     teaser:
-      "Mirror has one guaranteed user: me. That turns out to be the best product feedback loop I know.",
-    status: "draft",
+      "AI writes or debugs almost all of my code. I'd rather say that myself than have someone find it out.",
+    status: "published",
   },
   {
     slug: "the-honest-chess-problem",
     title: "The Honest Chess Problem",
     teaser:
       "Chess engines are honest to a fault. Making that honesty useful is a design problem, not an engine problem.",
-    status: "draft",
+    status: "published",
   },
   {
     slug: "technology-should-shape-better-behavior",
@@ -116,17 +119,20 @@ export const articles: Article[] = [
 ]
 
 /* Journey: a horizontal timeline of milestones (2024 -> now), replacing the
-   chapter narrative. Facts are user-supplied; [review] marks items awaiting
-   confirmation of dates/details. */
+   chapter narrative. Facts are user-supplied. Ordered by start date; date
+   ranges may overlap and are shown exactly as supplied. */
 export type Milestone = {
+  /** Date label: a year, or an exact range like "Oct 2025 – Feb 2026". */
   year: string
   title: string
   description: string
+  /** Optional length shown after the date label, e.g. "5 mos". */
+  duration?: string
 }
 
 export const journey = {
   /* One framing line for the timeline; both endpoints are real milestones. */
-  intro: "six stops: from first venture to first CTO seat.",
+  intro: "five stops: from first venture to two CTO seats.",
   milestones: [
     {
       year: "2024",
@@ -140,27 +146,22 @@ export const journey = {
       description: "Launched Cult Notice, a Gen Z clothing label built from scratch.",
     },
     {
-      // [review: confirm year and details of the seasoning unit]
-      year: "2025",
-      title: "Seasoning unit",
-      description: "Set up a small seasoning production unit.",
+      year: "Oct 2025 – Feb 2026",
+      duration: "5 mos",
+      title: "ElevenXai",
+      description: "Sales and Marketing (Internship): leads, outreach and growth.",
     },
     {
-      year: "2025",
-      title: "ElevenX internship",
-      description: "Joined the sales and marketing team: leads, outreach and growth.",
+      year: "Mar 2026 – Sep 2026",
+      duration: "7 mos",
+      title: "Wroob",
+      description: "Chief Technology Officer (Freelance), leading technology at Wroob.",
     },
     {
-      // [review: role upgraded from "operations & management"; confirm title and spelling Makhana/Makana]
-      year: "2025",
+      year: "May 2026 – Nov 2026",
+      duration: "7 mos",
       title: "Makhana Express",
-      description: "CMO & CTO for the import-export business.",
-    },
-    {
-      // [review: new role, add company details]
-      year: "now",
-      title: "CTO at Wroob",
-      description: "Leading technology at Wroob.",
+      description: "Chief Technology Officer (Part-time) for the import-export business.",
     },
   ] satisfies Milestone[],
   /* The playful final stop after the last milestone: a "currently..." note. */

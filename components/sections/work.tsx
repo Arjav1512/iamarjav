@@ -43,7 +43,18 @@ const COMPOSITIONS: {
   { text: "lg:col-span-4", media: "lg:col-span-8 lg:-mt-10", mediaLeft: false, align: "items-start", cover: "end" },
 ]
 
-function CaseStudy({ project, index }: { project: Project; index: number }) {
+/** Optional media override; omitted everywhere except the dev-only /lab route. */
+type RenderPreview = (project: Project, index: number) => React.ReactNode
+
+function CaseStudy({
+  project,
+  index,
+  renderPreview,
+}: {
+  project: Project
+  index: number
+  renderPreview?: RenderPreview
+}) {
   const url = liveUrl(project)
   const comp = COMPOSITIONS[index % COMPOSITIONS.length]
   const { mediaLeft } = comp
@@ -114,28 +125,32 @@ function CaseStudy({ project, index }: { project: Project; index: number }) {
 
         {/* Media column */}
         <div className={cn(comp.media, mediaLeft && "lg:order-1")}>
-          <BrowserFrame
-            title={project.title}
-            tagline={project.tagline}
-            badge={project.badge}
-            url={url}
-            cover={comp.cover}
-            media={project.media}
-          />
+          {renderPreview ? (
+            renderPreview(project, index)
+          ) : (
+            <BrowserFrame
+              title={project.title}
+              tagline={project.tagline}
+              badge={project.badge}
+              url={url}
+              cover={comp.cover}
+              media={project.media}
+            />
+          )}
         </div>
       </article>
     </Reveal>
   )
 }
 
-export function WorkSection() {
+export function WorkSection({ renderPreview }: { renderPreview?: RenderPreview } = {}) {
   const featured = projects.filter((p) => p.featured)
 
   return (
     <Section id="projects" index={1} title="Featured Work">
       <div className="flex flex-col gap-16 lg:gap-20">
         {featured.map((project, i) => (
-          <CaseStudy key={project.title} project={project} index={i} />
+          <CaseStudy key={project.title} project={project} index={i} renderPreview={renderPreview} />
         ))}
       </div>
     </Section>

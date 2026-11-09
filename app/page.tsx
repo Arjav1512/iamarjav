@@ -8,6 +8,7 @@ import { JourneySection } from "@/components/sections/journey"
 import { ArticlesSection } from "@/components/sections/articles"
 import { ContactSection } from "@/components/sections/contact"
 import { Footer } from "@/components/footer"
+import { renderLabPreview } from "@/components/lab/featured-previews"
 
 export default function Home() {
   return (
@@ -24,7 +25,7 @@ export default function Home() {
           the journey, writing, then the invitation. */}
       <main id="main" className="mx-auto max-w-5xl px-6 pt-(--spacing-section-sm) md:px-12 lg:pt-(--spacing-section)">
         <AboutSection />
-        <WorkSection />
+        <WorkSection renderPreview={(project) => renderLabPreview(project)} />
         <SkillsSection />
         <ExperimentsSection />
         <JourneySection />

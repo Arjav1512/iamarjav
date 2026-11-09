@@ -1,13 +1,13 @@
 "use client"
 
 import { useRef, useState } from "react"
-import { Megaphone, Shirt, Package, Briefcase, Store, Cpu, type LucideIcon } from "lucide-react"
+import { Megaphone, Shirt, Briefcase, Store, Cpu, type LucideIcon } from "lucide-react"
 import type { Milestone } from "@/data/content"
 import { gsap, useIsomorphicLayoutEffect } from "@/lib/motion"
 import { cn } from "@/lib/utils"
 
 /* Icon per milestone, ordered like journey.milestones. Purely supportive. */
-const MILESTONE_ICONS: LucideIcon[] = [Megaphone, Shirt, Package, Briefcase, Store, Cpu]
+const MILESTONE_ICONS: LucideIcon[] = [Megaphone, Shirt, Briefcase, Cpu, Store]
 
 interface JourneyTimelineProps {
   milestones: Milestone[]
@@ -148,6 +148,7 @@ export function JourneyTimeline({ milestones, intro, currently }: JourneyTimelin
                       aria-hidden="true"
                     />
                     {m.year}
+                    {m.duration && ` · ${m.duration}`}
                   </p>
                   <h3
                     className={cn(
@@ -197,7 +198,10 @@ export function JourneyTimeline({ milestones, intro, currently }: JourneyTimelin
               className="absolute -left-[30px] top-1.5 block size-2 rounded-full bg-accent"
               aria-hidden="true"
             />
-            <p className="font-mono text-xs text-muted-foreground">{m.year}</p>
+            <p className="font-mono text-xs text-muted-foreground">
+              {m.year}
+              {m.duration && ` · ${m.duration}`}
+            </p>
             <h3 className="mt-1 font-display text-lg font-semibold tracking-tight text-foreground">
               {m.title}
             </h3>

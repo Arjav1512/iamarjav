@@ -98,13 +98,6 @@ export const articles: Article[] = [
     status: "published",
   },
   {
-    slug: "the-honest-chess-problem",
-    title: "The Honest Chess Problem",
-    teaser:
-      "Chess engines are honest to a fault. Making that honesty useful is a design problem, not an engine problem.",
-    status: "published",
-  },
-  {
     slug: "technology-should-shape-better-behavior",
     title: "Technology Should Shape Better Behavior",
     teaser: "The best products do not just serve behaviour. They bend it somewhere better.",

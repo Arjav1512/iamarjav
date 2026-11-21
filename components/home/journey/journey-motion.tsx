@@ -42,7 +42,9 @@ export function JourneyMotion({ className, children }: { className?: string; chi
         doneTimer = setTimeout(() => (root.dataset.motion = "done"), CSS_ENTRANCE_MS)
         if (lanyard) dropTimer = setTimeout(() => (stopLanyard = dropLanyard(lanyard)), LANYARD_DELAY_MS)
       },
-      { threshold: 0.35 },
+      // 35% of the fan in view; the mobile pile can be taller than the screen,
+      // so cap it at half a viewport's worth or it might never fire.
+      { threshold: Math.min(0.35, (window.innerHeight * 0.5) / box.height) },
     )
     observer.observe(fan)
 

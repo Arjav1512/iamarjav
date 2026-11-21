@@ -70,7 +70,7 @@ export function HowIWork() {
                     >
                       <path d="M104 6 C40 4, 4 22, 8 48 C12 78, 70 88, 120 84 C176 80, 198 58, 192 34 C186 12, 140 2, 92 10" vectorEffect="non-scaling-stroke" />
                     </svg>
-                    <span className="hide-sm absolute left-1/2 top-[-46px] [transform:translateX(-20%)_rotate(-4deg)] f-pen font-semibold text-[26px] text-[#D9381E] whitespace-nowrap">
+                    <span className="loop-note absolute left-1/2 top-[-46px] [transform:translateX(-20%)_rotate(-4deg)] f-pen font-semibold text-[26px] text-[#D9381E] whitespace-nowrap">
                       start here. always.
                     </span>
                   </div>

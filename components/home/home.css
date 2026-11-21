@@ -699,8 +699,48 @@
     :where(.home) .loop-arrow {
       transform: rotate(90deg);
     }
-    :where(.home) .hide-sm {
-      display: none;
+    /*
+     * Journey: the horizontal fan becomes a vertical pile, oldest on top,
+     * zig-zagging left/right so each card keeps its tilt and overlaps the
+     * next a little. The pen note drops into the flow above Wroob and
+     * Makhana. Card markup and looks are untouched.
+     */
+    :where(.home) .fan {
+      flex-direction: column;
+      align-items: flex-start !important;
+      max-width: 400px;
+      margin-inline: auto;
+      min-height: 0 !important;
+      overflow: visible;
+      padding: 8px 0 0 !important;
+    }
+    :where(.home) .fan > .cred {
+      margin-right: 0 !important;
+    }
+    :where(.home) .fan > .cred + .cred {
+      margin-top: -14px;
+    }
+    :where(.home) .fan > .cred:nth-of-type(even) {
+      align-self: flex-end;
+    }
+    /* The badge's strap rises beside the tag above; the label clears Wroob's dates. */
+    :where(.home) .fan > .cred:has([data-lanyard]) {
+      margin-top: 2px;
+    }
+    :where(.home) .fan > .cred:has(.j-stamp) {
+      margin-top: 4px;
+    }
+    /* Too narrow for the strap to clear the tag: hang it below the tag's text. */
+    @media (max-width: 374px) {
+      :where(.home) .fan > .cred:has([data-lanyard]) {
+        margin-top: 80px;
+      }
+    }
+    :where(.home) .fan > .pen {
+      position: relative !important;
+      right: auto !important;
+      align-self: flex-end;
+      margin: 18px 6px 2px 0;
     }
   }
 

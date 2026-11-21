@@ -3,16 +3,14 @@ import { Footer } from "./footer"
 import { SocialLinks } from "./icons"
 
 /*
- * Contact. As designed, the footer sits inside this centred column
- * (DESIGN_SPEC §9.1). The design's fixed height is applied as a minimum so
- * the column can never overflow the section: its content is taller than
- * 751px at every width, and the overflow would otherwise show the body's
- * warm-paper background beneath the footer.
+ * Contact. The footer sits inside this centred column (as designed), so the
+ * column has no bottom padding of its own: the footer's symmetric 56px
+ * padding is the only space below "© 2026 · arjav jain".
  */
 export function Contact() {
   return (
-    <section id="contact" className="min-h-[751px]">
-      <div className="max-w-[1280px] mx-auto box-border py-[120px] px-[32px] flex flex-col items-center gap-[32px] text-center">
+    <section id="contact">
+      <div className="max-w-[1280px] mx-auto box-border pt-[120px] pb-0 px-[32px] flex flex-col items-center gap-[32px] text-center">
         <span className="inline-flex gap-[10px] items-center py-[8px] px-[14px] rounded-[999px] border border-[#EAEAEA] f-mono text-[12px]">
           <span className="pulse w-[7px] h-[7px] rounded-[50%] bg-[#0A0A0A]" />
           open to internships &amp; founding-team roles

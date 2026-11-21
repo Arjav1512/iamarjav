@@ -1,9 +1,18 @@
 "use client"
 
 import { useState, type KeyboardEvent, type ReactNode } from "react"
-import { workProjects } from "@/data/content"
-import { PenArrow } from "../icons"
+import { workProjects } from "@/content/projects"
 import { ProjectInfo } from "./project-info"
+
+/** Hand-drawn pen arrow beside the active card's note. */
+function PenArrow() {
+  return (
+    <svg aria-hidden="true" width="40" height="44" viewBox="0 0 40 44" fill="none" stroke="#D9381E" strokeWidth="2.2" strokeLinecap="round">
+      <path d="M6 4 C30 8, 34 24, 22 40" />
+      <path d="M14 34 L22 41 L28 32" />
+    </svg>
+  )
+}
 
 /* Card slots, exactly as the reference's POS table. */
 const POS = {

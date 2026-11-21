@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import { cn } from "@/lib/utils"
-import { SectionHeader } from "./section-header"
+import { SectionHeader } from "@/components/ui/section-header"
 
 type Step = { n: string; label: string; tone: "plain" | "ink" | "dashed" }
 

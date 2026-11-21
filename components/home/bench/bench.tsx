@@ -1,8 +1,8 @@
 import type { ReactNode } from "react"
-import { SectionHeader } from "../section-header"
-import { DiaryScene } from "./diary-scene"
-import { StackScene } from "./stack-scene"
-import { SwachScene } from "./swach-scene"
+import { SectionHeader } from "@/components/ui/section-header"
+import { DiaryScene } from "./scenes/diary-scene"
+import { StackScene } from "./scenes/stack-scene"
+import { SwachScene } from "./scenes/swach-scene"
 
 function TileBody({ scene, name, meta, blurb }: { scene: ReactNode; name: string; meta: string; blurb: string }) {
   return (

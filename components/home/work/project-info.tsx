@@ -1,5 +1,5 @@
 import type { KeyboardEvent } from "react"
-import type { WorkProject } from "@/data/content"
+import type { WorkProject } from "@/content/projects"
 
 const ctaClass =
   "min-h-[44px] box-border inline-flex items-center px-[20px] rounded-[999px] border border-[#EAEAEA] no-underline text-[14px]"

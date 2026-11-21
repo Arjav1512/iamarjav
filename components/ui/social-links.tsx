@@ -1,4 +1,4 @@
-import { siteConfig } from "@/data/content"
+import { siteConfig } from "@/content/site"
 
 /* GitHub, LinkedIn and Mail are Lucide paths; X is the filled brand mark. */
 
@@ -59,15 +59,5 @@ export function SocialLinks({ withEmail = false }: { withEmail?: boolean }) {
         </a>
       )}
     </>
-  )
-}
-
-/** Hand-drawn pen arrow used beside the carousel's pen notes. */
-export function PenArrow() {
-  return (
-    <svg aria-hidden="true" width="40" height="44" viewBox="0 0 40 44" fill="none" stroke="#D9381E" strokeWidth="2.2" strokeLinecap="round">
-      <path d="M6 4 C30 8, 34 24, 22 40" />
-      <path d="M14 34 L22 41 L28 32" />
-    </svg>
   )
 }

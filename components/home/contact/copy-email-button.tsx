@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { siteConfig } from "@/data/content"
+import { siteConfig } from "@/content/site"
 
 /**
  * "Copy my email": copies the address, confirms for 2.2s, and falls back to

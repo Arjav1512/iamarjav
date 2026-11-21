@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { siteConfig, siteMeta } from '@/data/content'
+import { siteConfig, siteMeta } from '@/content/site'
 import './globals.css'
 
 const inter = Inter({

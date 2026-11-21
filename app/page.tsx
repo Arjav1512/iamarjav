@@ -4,9 +4,9 @@ import { Hero } from "@/components/home/hero"
 import { HowIWork } from "@/components/home/how-i-work"
 import { WorkSection } from "@/components/home/work/work-section"
 import { Bench } from "@/components/home/bench/bench"
-import { Journey } from "@/components/home/journey"
+import { Journey } from "@/components/home/journey/journey"
 import { Writing } from "@/components/home/writing"
-import { Contact } from "@/components/home/contact"
+import { Contact } from "@/components/home/contact/contact"
 import "@/components/home/home.css"
 
 /*

@@ -1,6 +1,6 @@
+import { Footer } from "@/components/home/footer"
+import { SocialLinks } from "@/components/ui/social-links"
 import { CopyEmailButton } from "./copy-email-button"
-import { Footer } from "./footer"
-import { SocialLinks } from "./icons"
 
 /*
  * Contact. The footer sits inside this centred column (as designed), so the

@@ -2,9 +2,10 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { ArrowLeft, ArrowRight } from "lucide-react"
-import { articles, siteConfig } from "@/data/content"
+import { articles } from "@/content/articles"
+import { siteConfig } from "@/content/site"
 import { getArticleBody } from "@/lib/articles"
-import { ArticleBody } from "@/components/article-body"
+import { ArticleBody } from "@/components/article/article-body"
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }))

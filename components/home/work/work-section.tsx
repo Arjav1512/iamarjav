@@ -1,7 +1,7 @@
-import { SectionHeader } from "../section-header"
-import { ChessMatePanel } from "./chessmate-panel"
-import { MirrorPanel } from "./mirror-panel"
-import { TorchPanel } from "./torch-panel"
+import { SectionHeader } from "@/components/ui/section-header"
+import { ChessMatePanel } from "./panels/chessmate-panel"
+import { MirrorPanel } from "./panels/mirror-panel"
+import { TorchPanel } from "./panels/torch-panel"
 import { WorkCarousel } from "./work-carousel"
 
 export function WorkSection() {

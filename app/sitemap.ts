@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next"
-import { articles, siteMeta } from "@/data/content"
+import { articles } from "@/content/articles"
+import { siteMeta } from "@/content/site"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // No lastModified: without a maintained content-update timestamp, emitting

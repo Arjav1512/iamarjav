@@ -1,7 +1,7 @@
 import Link from "next/link"
-import { articles } from "@/data/content"
+import { articles } from "@/content/articles"
 import { cn } from "@/lib/utils"
-import { SectionHeader } from "./section-header"
+import { SectionHeader } from "@/components/ui/section-header"
 
 /*
  * The homepage shows three essays, in this order. Titles, teasers and

@@ -1,9 +1,9 @@
-import { SocialLinks } from "./icons"
+import { SocialLinks } from "@/components/ui/social-links"
 
 /*
- * Hero. The entrance (.rise) and the three pen marks (.m-*) are CSS
- * animations with delays that start after the entrance has finished, so the
- * marks render even with JavaScript disabled.
+ * Hero. The entrance (.rise) and the three pen marks (.m-*) are pure CSS
+ * animations (timing in home.css): each mark starts as its line settles, so
+ * they render even with JavaScript disabled.
  */
 export function Hero() {
   return (

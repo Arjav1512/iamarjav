@@ -37,14 +37,6 @@ export function Journey() {
           <SectionHeader title="Journey" note="five stops, 2024 to now" titleId="journey-title" className="border-[#ECE6DC]" />
 
           <div className="relative">
-            <span className="pen j-pen absolute right-[1%] top-0 flex gap-[6px] items-end [transform:rotate(3deg)] f-pen font-semibold text-[28px] leading-[0.95] text-[#D9381E] z-[7]">
-              both at once
-              <svg aria-hidden="true" width="46" height="38" viewBox="0 0 46 38" fill="none" stroke="#D9381E" strokeWidth="2.2" strokeLinecap="round">
-                <path d="M4 6 C26 4, 40 16, 36 34" />
-                <path d="M29 28 L36 35 L42 27" />
-              </svg>
-            </span>
-
             <div className="fan flex justify-center items-center gap-0 pt-[104px] px-0 pb-[32px] min-h-[360px]">
               {/* DigiArc: business card */}
               <div className="cred flex-none mr-[-10px] [transform:rotate(-4deg)] relative z-[1]">
@@ -105,6 +97,16 @@ export function Journey() {
                   </div>
                 </div>
               </div>
+
+              {/* Pen note: absolute (over the fan's top right) on desktop; on mobile it
+                  joins the stack, just above the two overlapping 2026 roles. */}
+              <span className="pen j-pen absolute right-[1%] top-0 flex gap-[6px] items-end [transform:rotate(3deg)] f-pen font-semibold text-[28px] leading-[0.95] text-[#D9381E] z-[7]">
+                both at once
+                <svg aria-hidden="true" width="46" height="38" viewBox="0 0 46 38" fill="none" stroke="#D9381E" strokeWidth="2.2" strokeLinecap="round">
+                  <path d="M4 6 C26 4, 40 16, 36 34" />
+                  <path d="M29 28 L36 35 L42 27" />
+                </svg>
+              </span>
 
               {/* Wroob: chip card */}
               <div className="cred flex-none mr-[-10px] [transform:rotate(3deg)] relative z-[4]">

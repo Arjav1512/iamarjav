@@ -5,54 +5,54 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-pnpm install   # install dependencies
-pnpm dev       # start dev server
-pnpm build     # production build (TypeScript errors are intentionally ignored)
-pnpm lint      # run ESLint
-pnpm start     # serve production build
+pnpm install     # install dependencies
+pnpm dev         # start dev server
+pnpm typecheck   # tsc --noEmit (the build ignores TypeScript errors, so run this)
+pnpm build       # production build
+pnpm start       # serve production build
 ```
 
-There are no tests in this project.
+There are no tests and no linter configured.
 
 ## Architecture
 
-This is a single-page personal portfolio built with Next.js (App Router), React 19, TypeScript, and Tailwind CSS v4.
+Personal portfolio built with Next.js 16 (App Router, Turbopack), React 19, TypeScript and Tailwind CSS v4. Two kinds of page: the homepage (`/`) and statically generated essays (`/articles/[slug]`).
 
-### Content is centralised
+```
+app/                    routes, root layout (metadata, JSON-LD, analytics, fonts), globals.css, icons
+components/
+  home/                 homepage only: one file or folder per section
+    home.css            homepage stylesheet (scoped to .home, see below)
+    fonts.ts            Geist / Geist Mono / Caveat, applied on the .home root only
+    work/               Selected work carousel (client) + panels/ (static card faces)
+    bench/              The bench + scenes/ (isometric SVGs)
+    journey/            Journey section + journey-motion.tsx (scroll entrance, lanyard physics)
+    contact/            Contact section + copy-email button (client)
+  article/              essay page components (article-body renders parsed Markdown)
+  ui/                   small reusable pieces (section header, social links)
+content/
+  site.ts               name, email, social links, SEO metadata
+  projects.ts           Selected work carousel data
+  articles/             index.ts (essay list: slug, title, teaser, status) + <slug>.md bodies
+lib/                    articles.ts (reads .md at build time), markdown.ts (tiny parser), utils.ts (cn)
+docs/design/            redesign reference HTML, spec and renders (not part of the build)
+```
 
-**All site content** — bio, projects, skills, work experience, education, certifications, social links — lives in `data/content.ts` as plain exported constants. This is the only file that needs to change for content updates; the components read from it directly.
+### Content
 
-### Two-column layout
-
-`app/page.tsx` renders a single responsive layout:
-
-- **`components/left-column.tsx`** — sticky sidebar (desktop). Contains the name/tagline, a scroll-spy navigation (uses `IntersectionObserver` to track active section), and social links. The `EmailPopup` component renders a Dynamic Island-style overlay on email icon click.
-- **`components/right-column.tsx`** — scrollable main content. Renders the five section components in order: About, Experience, Projects, Skills, Contact, then Footer.
-
-On mobile the left column collapses to a normal block and the sticky nav is hidden.
-
-### Section components
-
-Each section lives in `components/sections/` and maps directly to a named anchor (`#about`, `#experience`, etc.). Sections import their data from `data/content.ts` and apply parallax effects via the `useParallax` hook.
-
-### Custom hooks (`hooks/`)
-
-- `use-parallax.ts` — `useParallax` translates an element vertically based on scroll distance from viewport centre; `useScrollFade` returns a 0–1 progress value as an element scrolls into view. Both use `requestAnimationFrame` with passive scroll listeners.
-- `use-scroll-reveal.ts` — `useScrollReveal` returns a boolean that flips to `true` once an element crosses the viewport threshold (fires once, then unobserves).
-- `use-mobile.ts` — breakpoint detection hook.
+- Essays: add `content/articles/<slug>.md` and an entry in `content/articles/index.ts`. Drafts have no file and render a noindex placeholder. The homepage Writing rows pick three slugs (`FEATURED` in `components/home/writing.tsx`) and read titles, teasers and status from the index.
+- Carousel copy lives in `content/projects.ts`; other homepage copy is literal in its section component.
 
 ### Styling
 
-Tailwind CSS v4 (`@import 'tailwindcss'`) with CSS custom properties in `app/globals.css` using OKLCH colour tokens. The design token names (`--background`, `--foreground`, `--primary`, etc.) follow the shadcn/ui convention and are mapped in the `@theme inline` block.
+- `app/globals.css`: site-wide tokens (shadcn-style names, OKLCH) and base styles used by the article pages.
+- `components/home/home.css`: the homepage's keyframes, hovers, breakpoints (1180 / 1100 / 820px) and reduced-motion rules, in `@layer components` and scoped with `:where(.home)`. Static values are Tailwind arbitrary utilities in the components (`text-[22px]`, `tracking-[-0.02em]`), which win over these rules the way inline styles did in the reference design.
+- The homepage resets preflight to UA defaults inside `.home` (content-box sizing, `line-height: normal`) to match `docs/design/redesign-reference.html`.
 
-Custom animations (`animate-island-expand`, `animate-fade-in`) for the email popup are defined in `globals.css`. `will-change-transform` is applied to parallax containers and stripped via `prefers-reduced-motion`.
+### Motion
 
-Fonts are loaded via `next/font/google`: Inter (`--font-inter`) and JetBrains Mono (`--font-jetbrains`).
-
-### UI primitives
-
-`components/ui/` is a full shadcn/ui component library (Radix UI + class-variance-authority). Only a small subset is actively used by the portfolio sections — `Badge` being the main one.
+All homepage motion is CSS except two client components: the work carousel and the Journey entrance (`journey-motion.tsx`, which arms cards via `data-motion` and runs the ElevenX lanyard physics with `requestAnimationFrame`). Everything respects `prefers-reduced-motion`, and content stays visible without JavaScript.
 
 ### Next.js config
 
-`next.config.mjs` sets `typescript.ignoreBuildErrors: true` and `images.unoptimized: true`. Type errors will not fail the build.
+`next.config.mjs` sets `typescript.ignoreBuildErrors: true`, `images.unoptimized: true` and pins the Turbopack root.

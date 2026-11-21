@@ -64,7 +64,11 @@
     font-family: monospace;
   }
 
-  /* ————— Hero entrance + pen marks (pure CSS: render without JS) ————— */
+  /* ————— Hero entrance + pen marks (pure CSS: render without JS) —————
+     The marks start as each line settles (the entrance eases out fast, so
+     line 1 is ~93% in place by 0.6s); each margin note fades in just after
+     its mark completes: highlight 0.6s → 1.35s, squiggle 1.2s → 1.7s,
+     underline 1.65s → 2.3s. */
 
   :where(.home) .rise {
     animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
@@ -99,19 +103,19 @@
     border-radius: 0.06em;
     background: linear-gradient(#ffd93b, #ffd93b) no-repeat 0 34% / 0% 82%;
     animation:
-      m-sweep 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 1.15s both,
-      m-ink 0.2s 1.25s both;
+      m-sweep 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s both,
+      m-ink 0.2s 0.7s both;
   }
   :where(.home) .m-squiggle {
     text-decoration: underline wavy transparent;
     text-decoration-thickness: 0.05em;
     text-underline-offset: 0.06em;
     text-decoration-skip-ink: none;
-    animation: m-flag 0.45s 1.85s both;
+    animation: m-flag 0.45s 1.2s both;
   }
   :where(.home) .m-underline {
     background: linear-gradient(#2340e0, #2340e0) no-repeat 0 96% / 0% 0.07em;
-    animation: m-draw 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 2.45s both;
+    animation: m-draw 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 1.65s both;
   }
   @keyframes m-sweep {
     to {
@@ -156,13 +160,13 @@
     animation: m-fade 0.4s both;
   }
   :where(.home) .m-n1 {
-    animation-delay: 1.9s;
+    animation-delay: 1.35s;
   }
   :where(.home) .m-n2 {
-    animation-delay: 2.35s;
+    animation-delay: 1.7s;
   }
   :where(.home) .m-n3 {
-    animation-delay: 3.1s;
+    animation-delay: 2.3s;
   }
   @keyframes m-fade {
     from {

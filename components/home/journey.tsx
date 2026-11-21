@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import { JourneyMotion } from "./journey-motion"
 import { SectionHeader } from "./section-header"
 
 /*
@@ -32,11 +33,11 @@ export function Journey() {
   return (
     <div id="journey">
       <section aria-labelledby="journey-title" className="w-full bg-[#FAF7F2] text-[#0A0A0A]">
-        <div className="max-w-[1280px] mx-auto box-border pt-[112px] px-[32px] pb-[96px] flex flex-col gap-[32px]">
+        <JourneyMotion className="max-w-[1280px] mx-auto box-border pt-[112px] px-[32px] pb-[96px] flex flex-col gap-[32px]">
           <SectionHeader title="Journey" note="five stops, 2024 to now" titleId="journey-title" className="border-[#ECE6DC]" />
 
           <div className="relative">
-            <span className="pen absolute right-[1%] top-0 flex gap-[6px] items-end [transform:rotate(3deg)] f-pen font-semibold text-[28px] leading-[0.95] text-[#D9381E] z-[7]">
+            <span className="pen j-pen absolute right-[1%] top-0 flex gap-[6px] items-end [transform:rotate(3deg)] f-pen font-semibold text-[28px] leading-[0.95] text-[#D9381E] z-[7]">
               both at once
               <svg aria-hidden="true" width="46" height="38" viewBox="0 0 46 38" fill="none" stroke="#D9381E" strokeWidth="2.2" strokeLinecap="round">
                 <path d="M4 6 C26 4, 40 16, 36 34" />
@@ -47,6 +48,7 @@ export function Journey() {
             <div className="fan flex justify-center items-center gap-0 pt-[104px] px-0 pb-[32px] min-h-[360px]">
               {/* DigiArc: business card */}
               <div className="cred flex-none mr-[-10px] [transform:rotate(-4deg)] relative z-[1]">
+                <div className="j-toss relative">
                 <div className="box-border w-[262px] h-[168px] py-[20px] px-[22px] bg-[#ECEAE6] text-[#2A2723] rounded-[8px] shadow-[0_22px_34px_-22px_rgba(0,0,0,0.45)] flex flex-col justify-between">
                   <span className="flex items-center gap-[9px]">
                     <span aria-hidden="true" className="w-[10px] h-[10px] rounded-[50%] bg-[#57524B]" />
@@ -55,10 +57,12 @@ export function Journey() {
                   <Role role="Co-founder" desc="Digital Marketing Agency" descColor="#6B655D" />
                   <span className="j-date text-[#6B655D]">2024</span>
                 </div>
+                </div>
               </div>
 
               {/* Cult Notice: clothing tag on a string */}
               <div className="cred flex-none mr-[-10px] [transform:rotate(3deg)] relative z-[2]">
+                <div className="j-sway relative">
                 <svg aria-hidden="true" width="60" height="70" viewBox="0 0 60 70" fill="none" stroke="#A89A82" strokeWidth="1.6" className="absolute left-[60px] top-[-58px]">
                   <path d="M30 70 C10 50, 50 30, 22 0" />
                 </svg>
@@ -72,11 +76,18 @@ export function Journey() {
                   <Role role="Co-founder" desc="Gen Z Clothing Brand" descColor="#5E5240" />
                   <span className="j-date text-[#5E5240]">2024</span>
                 </div>
+                </div>
               </div>
 
               {/* ElevenX: lanyard ID badge */}
               <div className="cred flex-none mr-[-10px] [transform:rotate(-2deg)] relative z-[3]">
-                <div aria-hidden="true" className="absolute left-1/2 top-[-96px] w-[28px] h-[88px] ml-[-14px] bg-[#EDC27A]" />
+                {/* Lanyard: the swing pivots at the strap's top; the band is an SVG
+                    stroke so it can stretch and bow (at rest: the same 28×88 strap). */}
+                <div data-lanyard className="relative [transform-origin:50%_-96px]">
+                <svg data-lanyard-band aria-hidden="true" width="28" height="88" className="absolute left-1/2 top-[-96px] ml-[-14px] overflow-visible">
+                  <path d="M14 0 Q14 44 14 88" stroke="#EDC27A" strokeWidth="28" fill="none" />
+                </svg>
+                <div data-lanyard-tag className="relative">
                 <div aria-hidden="true" className="absolute left-1/2 top-[-14px] w-[20px] h-[22px] ml-[-10px] rounded-[4px] bg-[linear-gradient(#D6D6D4,#8C8C8C)]" />
                 <div className="box-border w-[204px] h-[292px] bg-[#FFFFFF] rounded-[12px] overflow-hidden shadow-[0_22px_34px_-22px_rgba(0,0,0,0.45)] flex flex-col">
                   <div className="h-[48px] flex-none bg-[#EDC27A] text-[#2A1E08] flex items-center justify-between px-[20px]">
@@ -91,10 +102,13 @@ export function Journey() {
                     <span className="j-date text-[#6B6B6B]">Oct 2025 – Feb 2026</span>
                   </div>
                 </div>
+                </div>
+                </div>
               </div>
 
               {/* Wroob: chip card */}
               <div className="cred flex-none mr-[-10px] [transform:rotate(3deg)] relative z-[4]">
+                <div className="j-flip relative">
                 <div className="box-border w-[272px] h-[176px] py-[20px] px-[22px] bg-[#EAA23A] text-[#1E1406] rounded-[14px] shadow-[0_22px_34px_-22px_rgba(0,0,0,0.6)] flex flex-col justify-between">
                   <span className="flex justify-between items-center">
                     <span className="j-co">Wroob</span>
@@ -103,10 +117,12 @@ export function Journey() {
                   <Role role="Co-founder" desc="AI Internship Matching" descColor="#4A3410" />
                   <span className="j-date text-[#4A3410]">Mar 2026 – Sep 2026</span>
                 </div>
+                </div>
               </div>
 
               {/* Makhana Express: shipping label, circled "now" */}
               <div className="cred flex-none [transform:rotate(-2deg)] relative z-[5]">
+                <div className="j-stamp relative">
                 <div className="relative box-border w-[224px] h-[292px] p-[22px] bg-[#D9731E] text-[#1E1004] rounded-[8px] shadow-[0_22px_34px_-22px_rgba(60,40,10,0.6)] flex flex-col justify-between">
                   <span className="j-co">Makhana Express</span>
                   <Role desc="Import & Export" descColor="#3A1E06">
@@ -120,14 +136,15 @@ export function Journey() {
                           fill="none"
                           stroke="#1E1004"
                           strokeWidth="2"
-                          className="absolute inset-[-4px_-6px] w-[calc(100%+12px)] h-[calc(100%+8px)] overflow-visible"
+                          className="j-ring absolute inset-[-4px_-6px] w-[calc(100%+12px)] h-[calc(100%+8px)] overflow-visible"
                         >
-                          <path d="M34 3 C12 3, 3 14, 6 26 C9 38, 40 42, 54 34 C66 26, 60 8, 40 4" />
+                          <path pathLength={1} d="M34 3 C12 3, 3 14, 6 26 C9 38, 40 42, 54 34 C66 26, 60 8, 40 4" />
                         </svg>
                       </span>
                     </span>
                   </Role>
                   <span className="j-date text-[#3A1E06]">May 2026 – Nov 2026</span>
+                </div>
                 </div>
               </div>
             </div>
@@ -139,7 +156,7 @@ export function Journey() {
                 <div
                   key={bar.color}
                   aria-hidden="true"
-                  className="absolute h-[6px] rounded-[3px]"
+                  className="j-bar absolute h-[6px] rounded-[3px]"
                   style={{ left: bar.left, width: bar.width, top: bar.top, background: bar.color }}
                 />
               ))}
@@ -156,7 +173,7 @@ export function Journey() {
             <span className="f-mono text-[12px] text-[#0A0A0A] mr-[12px]">Currently</span>
             Building random tools, reading essays, watching people use software and thinking about behaviour.
           </p>
-        </div>
+        </JourneyMotion>
       </section>
     </div>
   )

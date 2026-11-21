@@ -139,4 +139,10 @@ export const articles: Article[] = [
     teaser: "Utility is a solved problem for machines. The interesting work starts after.",
     status: "draft",
   },
+  {
+    slug: "i-ship-fast-i-learn-slow",
+    title: "I Ship Fast. I Learn Slow.",
+    teaser: "Speed matters. I was just timing the wrong thing.",
+    status: "published",
+  },
 ]

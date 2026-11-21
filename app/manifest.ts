@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { siteConfig, siteMeta } from "@/data/content"
+import { siteConfig, siteMeta } from "@/content/site"
 
 /*
  * Web app manifest, served at /manifest.webmanifest. The icons live in

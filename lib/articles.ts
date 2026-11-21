@@ -4,7 +4,7 @@ import { parseMarkdown, type Block } from "@/lib/markdown"
 
 /*
  * Essays live in content/articles/<slug>.md, one file per article, named by
- * the slug in data/content.ts. Read at build time (article pages are
+ * the slug in the index (content/articles/index.ts). Read at build time (article pages are
  * statically generated), so nothing touches the filesystem at request time.
  */
 const ARTICLES_DIR = path.join(process.cwd(), "content", "articles")
@@ -27,7 +27,7 @@ export function getArticleBody(slug: string): ArticleBody | null {
   }
 
   const blocks = parseMarkdown(source)
-  // The title is rendered from data/content.ts; drop the file's own H1.
+  // The title is rendered from the index; drop the file's own H1.
   if (blocks[0]?.type === "heading" && blocks[0].level === 1) blocks.shift()
 
   const words = source.replace(/[#>*_`\[\]()-]/g, " ").split(/\s+/).filter(Boolean).length

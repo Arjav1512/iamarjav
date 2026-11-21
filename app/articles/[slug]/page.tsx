@@ -2,9 +2,10 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { ArrowLeft, ArrowRight } from "lucide-react"
-import { articles, siteConfig } from "@/data/content"
+import { articles } from "@/content/articles"
+import { siteConfig } from "@/content/site"
 import { getArticleBody } from "@/lib/articles"
-import { ArticleBody } from "@/components/article-body"
+import { ArticleBody } from "@/components/article/article-body"
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }))
@@ -64,7 +65,7 @@ export default async function ArticlePage({
   return (
     <main className="mx-auto max-w-3xl px-6 pb-24 pt-16 md:px-12 lg:pb-32 lg:pt-24">
       <Link
-        href="/#articles"
+        href="/#writing"
         className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors duration-(--duration-hover) hover:text-foreground"
       >
         <ArrowLeft className="size-3.5" aria-hidden="true" />
@@ -105,7 +106,7 @@ export default async function ArticlePage({
         {body && (
           <footer className="mt-16 flex flex-wrap items-end justify-between gap-x-8 gap-y-6 border-t border-border pt-8 sm:mt-20">
             <Link
-              href="/#articles"
+              href="/#writing"
               className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors duration-(--duration-hover) hover:text-foreground"
             >
               <ArrowLeft className="size-3.5" aria-hidden="true" />

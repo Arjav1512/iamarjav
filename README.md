@@ -15,7 +15,7 @@ pnpm install
 pnpm dev
 ```
 
-All the content - the bio, projects, experience, everything - lives in one place: `data/content.ts`. That was kind of the point. Update one file, and the whole site reflects it.
+All the content lives in `content/`: site details in `site.ts`, the featured projects in `projects.ts`, and every essay as a Markdown file in `content/articles/` (listed in its `index.ts`). Update the content, and the whole site reflects it.
 
 Built with ❤️ and a lot of tweaking at odd hours.
 

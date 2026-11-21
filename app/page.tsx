@@ -1,38 +1,37 @@
-import { SiteNav } from "@/components/site-nav"
-import { Hero } from "@/components/hero"
-import { AboutSection } from "@/components/sections/about"
-import { WorkSection } from "@/components/sections/work"
-import { SkillsSection } from "@/components/sections/skills"
-import { ExperimentsSection } from "@/components/sections/experiments"
-import { JourneySection } from "@/components/sections/journey"
-import { ArticlesSection } from "@/components/sections/articles"
-import { ContactSection } from "@/components/sections/contact"
-import { Footer } from "@/components/footer"
-import { renderLabPreview } from "@/components/lab/featured-previews"
+import { homeFontVariables } from "@/components/home/fonts"
+import { Nav } from "@/components/home/nav"
+import { Hero } from "@/components/home/hero"
+import { HowIWork } from "@/components/home/how-i-work"
+import { WorkSection } from "@/components/home/work/work-section"
+import { Bench } from "@/components/home/bench/bench"
+import { Journey } from "@/components/home/journey/journey"
+import { Writing } from "@/components/home/writing"
+import { Contact } from "@/components/home/contact/contact"
+import "@/components/home/home.css"
 
+/*
+ * Homepage: "Work First". Geist, Geist Mono and Caveat are scoped to the
+ * .home root, so article pages keep the site-wide typography.
+ */
 export default function Home() {
   return (
-    <>
+    <div className={`home ${homeFontVariables}`}>
       <a
         href="#main"
         className="sr-only z-50 rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
       >
         Skip to content
       </a>
-      <SiteNav />
-      <Hero />
-      {/* The builder's story: intro, proof, tools/thinking, side quests,
-          the journey, writing, then the invitation. */}
-      <main id="main" className="mx-auto max-w-5xl px-6 pt-(--spacing-section-sm) md:px-12 lg:pt-(--spacing-section)">
-        <AboutSection />
-        <WorkSection renderPreview={(project) => renderLabPreview(project)} />
-        <SkillsSection />
-        <ExperimentsSection />
-        <JourneySection />
-        <ArticlesSection />
-        <ContactSection />
-        <Footer />
+      <Nav />
+      <main id="main">
+        <Hero />
+        <HowIWork />
+        <WorkSection />
+        <Bench />
+        <Journey />
+        <Writing />
+        <Contact />
       </main>
-    </>
+    </div>
   )
 }
